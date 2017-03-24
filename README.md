@@ -1,2 +1,4 @@
-# idnet
-Intelligence Defined Networking
+Intelligence Defined Networking (IDNET)
+=======================================
+
+Mailing list: https://www.ietf.org/mailman/listinfo/idnet
