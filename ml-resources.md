@@ -1,6 +1,8 @@
 Machine Learning Resources
 --------------------------
 
+- Deep Learning Book: http://www.deeplearningbook.org
+
 - Tutorials and introductory documents: http://www.1-4-5.net/~dmm/ml
 
 - Bayesian Inference: http://www.1-4-5.net/~dmm/ml/ps.pdf
