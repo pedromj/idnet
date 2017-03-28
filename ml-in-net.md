@@ -1,7 +1,7 @@
 Machine Learning in Networking
 ------------------------------
 
-I thought I'd try to get some discussion going by outlining some of my views as to why networking is lagging other areas in the development and application of Machine Learning (ML). In particular, networking is way behind what we might call the "perceptual tasks" (vision, NLP, robotics, etc) as well as other areas (medicine, finance, ...). The attached slide from one of my decks tries to summarize the situation, but I'll give a bit of an outline below.
+I thought I'd try to get some discussion going by outlining some of my views as to why networking is lagging other areas in the development and application of Machine Learning (ML). In particular, networking is way behind what we might call the "perceptual tasks" (vision, NLP, robotics, etc) as well as other areas (medicine, finance, ...). [This slide](ml-in-net-lagging.png) summarizes the situation.
 
 So why is networking lagging many other fields when it comes to the application of machine learning? There are several reasons which I'll try to outline here (I was fortunate enough to discuss this with the packetpushers crew a few weeks ago, see [0]). These are in no particular order.
 
