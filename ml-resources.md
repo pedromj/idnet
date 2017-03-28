@@ -5,9 +5,7 @@ Machine Learning Resources
 
 - Bayesian Inference: http://www.1-4-5.net/~dmm/ml/ps.pdf
 
-- Variational Inference: http://www.1-4-5.net/~dmm/ml/vae.pdf
-
-Variational inference is a form of approximate inference that, among other things, attempts to deal with the intractable integral in Bayes' Rule (the "evidence" aka "marginal likelihood").
+- Variational Inference: http://www.1-4-5.net/~dmm/ml/vae.pdf (it is a form of approximate inference that, among other things, attempts to deal with the intractable integral in Bayes' Rule, the "evidence" aka "marginal likelihood").
 
 - Deep Learning papers: https://github.com/terryum/awesome-deep-learning-papers
 
