@@ -9,3 +9,4 @@ Mailing list: https://www.ietf.org/mailman/listinfo/idnet
 - [ETSI IDN](etsi-idn.md)
 - [Machine Learning Resources](ml-resources.md)
 - [Reinforcement Learning, Basic Information](rl-basic.md)
+- [Fingerprinting, Monitoring, and Control](fingerprinting-monitoring-control.md)
