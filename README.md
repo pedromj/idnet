@@ -8,3 +8,4 @@ Mailing list: https://www.ietf.org/mailman/listinfo/idnet
 - [DDOS](ddos.md)
 - [ETSI IDN](etsi-idn.md)
 - [Machine Learning Resources](ml-resources.md)
+- [Reinforcement Learning, Basic Information](rl-basic.md)
