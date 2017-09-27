@@ -1,5 +1,3 @@
-# TEST 
-
 Intelligence Defined Networking (IDNET)
 =======================================
 
