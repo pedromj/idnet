@@ -1,0 +1,205 @@
+##  [PREFACE]  ##
+#
+# Please edit directly in-line. Yan Shen will be responsible for editing this into IETF draft text file. 
+#
+# Please pull this txt file as "request" to https://github.com/Yarchmage/idnet and I will merge them into the main version.
+#
+# Any suggestions including the structure/content/grammar/... are welcome. 
+#
+##  [The end]  ##
+
+
+[Author List]
+Shen Yan, Huawei Technologies
+TBD, TBD
+
+
+[Title]
+A General Considerations of Intelligence Driven Network
+draft-idnet-00
+
+
+[Abstract]
+This document aims to pinpoint the work scope of Intelligence Driven Network (IDN) and mine the potential standardization work. Firstly, the problems and new requirements for the existing methods are analyzed. Numbers of high value use-cases are proposed as examples to instantiate them. A benchmark framework design is proposed, which is important during the machine learning and inference process. Finally, a reference model of IDN is proposed, based on which the potential standardization work is analyzed. 
+
+			 
+1.	Problem Statement and General Requirements
+An analysis of the problems, requirements and benefits of introducing AI into network operation and management. The requirements in the current network that may be solved perfectly by AI methods. 
+
+
+2.	Scope and use cases
+
+
+2.1.	Scope
+A general description about what should be focused during the IETF work and what should not. Clarify the work boundary. (e.g. in my personal opinion, the pure algorithm research will not be suitable for our IETF works since it is not relative with protocols and communications. Also, the architecture work will be not suitable. But we need one, such as the one discussed at IETF-99, for reference.)
+
+2.2.	High Value Use Cases
+The descriptions for various use cases, which we have some aggregation in the mail list. Describe the scenarios that may be useful and valuable. A details analysis may be helpful for the data and protocol design. 
+
+2.2.1 Traffic Prediction
+
+Collect the history traffic data and external data which may influence the traffic. Predict the traffic in short/long/specific term. Avoid the congestion or risk in previously.
+
+The process, data format and message needs are:
+	
+Process: 1. Data collection (e.g. traffic sample of physical/logical port ); 2. Training Model; 3. Real-time data capture and input; 4. Predication output; 5. Fix error and go back to 3.
+
+Data Format: 	Time : [Start, End, Unit, Number of Value, Sampling Period] 
+				Position: [Device ID, Port ID]
+				Direction: IN / OUT
+				Route : [R1, R2, ..., RN]  (might be useful for some scenarios)
+				Service : [Service ID, Priority, ...]  (Not clear how to use it but seems useful)
+				Traffic: [T0, T1, T2, ..., TN]
+				
+Message : 		Request: ask for the data 
+				Reply: Data
+				Notice: For notification or others 
+				Policy: Control policy
+
+
+2.2.2 QoS management
+
+It is worthy to predict the traffic change for avoiding the congestion and ensuring QoS. As the following figure shown, the AI system continuously collects link status data from the network. This AI system is responsible for two things. One is monitoring and predicting the traffic on each link and the other one is calculating the usable route for any pair of nodes according to the prediction and current link status. Assume that there is a VPN named VPN_S_D from node S to D which pass through S-A-B-C-D. According to the prediction, there will be a huge traffic flow from node A to C in the future 10 min. The traffic will increase the end-to-end delay from S to D so that the QoS will not be ensured. 
+                       
+             x		x	             
+       _ A ---- B ---- C._      link status   +----------+
+     ,'    \        /      `.   =============>|IDN Engine|
+   -'        \    /          `-               +----------+
+ S ------I ---- J ----  K ----  D
+   .          /   \          ,'
+    `.      /       \      ,'
+      '  O ---- P ----  Q '	
+	  
+
+		  
+There are at least two solutions. one is modifying the object's configuration to avoid the potential congestion. For example, we modify the VPN_S_D route from S-A-B-C-D to S-I-J-K-D. The other one is restricting non-object's transmission so that to protect the object's QoS. For example, we increase the reserved bandwidth of VPN_S_D or modify the route of non-object flows from S-A-B-C-D to S-I-J-K-D therefore most of the traffic will not affect VPN_S_D. 
+
+Here we may have some challenges. Challenge 1 is the AI prediction and autonomic decision should be a quick response. The whole process must be finished before the congestion happens meanwhile the AI system is meaningless. The question is how to implement such quick response? Challenge 2 is whether there is existing protocols which can support high frequency measurement? Because AI system needs to be fed with continuous link status data. And the real-time data need to be captured frequently otherwise the route change will be worthless. I think the protocols that support high frequency measurement and data collection may become one of our focus point.
+
+The process, data format and message needs are:
+
+Process: 1. Data capture (e.g. traffic sample of physical/logical port ); 2. Training Model; 3. Real-time data capture and input; 4. Output percentages; 5. Fix error and go back to 3.
+
+Data Format: 	Time : [Timestamp, Value type (Delay/Packet Loss/...), Unit, Number of Value, Sampling Period] 
+				Position: [Link ID, Device ID]
+				Value: [V0, V1, V2, ..., VN]
+				
+Message : 		Request: ask for the data 
+				Reply: Data
+				Notice: For notification or others 
+				Policy: Control policy
+
+				
+				
+2.2.3 TBD...
+
+2.2.4 TBD...
+
+
+
+3.	Measurement and Data Format
+
+
+3.1.	Measurement Tools and Methods
+The new requirements of the measurement, such as high frequency, high precision, new KPIs and so on. The analysis for the current measuring methods and try to distinguish the potential usable tools and methods. 
+
+
+3.2.	Data Format Analysis
+Including the aggregation of labelling and other stuff. The requirements of the network AI algorithm for the input/output. The expression of labels, meta-data, policies, and so on. 
+
+
+4.	Benchmarking Framework
+A proper benchmarking framework comprises a set of reference procedures, methods, and models that can (or better *must*) be followed to assess the quality of an AI mechanism proposed to be applied to the network management/control area. Moreover, and much more specific to the IDNET topics, is the inclusion, dependency, or just the general relation of a standard format enforced to the data that is used (input) and produced (output) by the framework, so a kind of "data market" can arise without requiring to transform the data. The initial scope of input/output data would be the datasets, but also the new knowledge items that are stated as a result of applying the benchmarking procedures defined by the framework, which can be collected together to build a database of benchmark results, or just contrasted with other existing entries in the database to know the position of the solution just evaluated. This increases the usefulness of IDNET.
+
+
+5.	References Model and Potential Standardization Points
+
+5.1 References Model
+
+A three layers reference model of IDN has been proposed as follow. This architecture can cover, explain and support most of the current use cases and scenarios. 
+                                                                    
+         +-----------+                          +----------+    
+         |Open       |------------------------->|          |   
+         |Application|    +---------------------+3rd Party |-+   
+         |Interface  |    | IDN Engine          |Algorithm | |   
+         +-----------+    | +---------+ +-----+ |Interface | |   
+         +------------+   | |Algorithm| |Model| |          | |   
+         |Data Refiner+-->| +---------+ +-----+ +----------- |   
+         +------------+   +----------------------------------+   
+               ^          |    Training   |    Inference     |   
+ Intelligent   |          +----------------------------------+   
+ Layer         +-----------------+                 |
+               |                 |                 v
+         +-------------+  +-------------+    +-------------+      
+         |External Data|  |Internal Data|    |  Policy     |      
+         |Interface    |  |Interface    |    |  Generator  |   
+         +-------------+  +-------------+    +-------------+      
+               ^                 ^                 |             
+               |                 |                 v 
+           +----------+   +-------------+    +----------------+   
+ Control   |3rd Party |   |Aggregating  |--->|Control Function|   
+ Layer     |Dataset   |   |Dataset      |    +----------------+   
+           +----------+   +-------------+    |   Inference    |   
+               ^                  ^          +----------------+   
+               |                  |                 |
+               |                  |                 |           
+               |                  |                 v
+         +-------------+    +-----------+     +------------+    
+ Infras- |Terminal/User|    |Measurement|     | Network    |    
+ tructure|Device       |--->|Function   |<----| Function   |    
+ Layer   +-------------+    +-----------+     +------------+    
+                                                                  
+
+The under layer is Infrastructure layer, which contains network function, measurement function and terminal/user device. The network function stands for the traditional routers, switches and other network devices, which are responsible for constructing the network foundations and forwarding data. The Measurement function stands for devices that can collect information from the network and various devices. A popular option are probe system, which is deployed distributed among the network. Besides that, some of the network devices integrate the measure function and play two roles. The information may involve but not limited the content listed in following table. The Terminal/User Device stands for the device that produces and consumes data, which may include PC, smart phone, datacenter, content storage server, cloud and etc. Some of the data produced by terminal/user devices is measurable. This type of data will be captured by the measurement function. Other types of data that cannot be measured directly by network measurement functions is represented as 3rd party datasets, which hopefully can be utilized in the future via 3rd party integration at the intelligence layer.
+
+-----------------------------------------------------------------
+    Type	                              Content
+-----------------------------------------------------------------
+  Network Data	        Delay, Jitter, Packet Lose Rate,
+                        Link Utilization, ¡­
+  Device Data	        Device Configuration, VPN Configuration, 
+                        Slicing Configuration, ¡­
+  User Data	            QoE Feedback, User Information, ¡­
+  
+  Data Packet	        Packet Sample, Packet Character, ¡­
+  
+  Other Type	        TBD
+-----------------------------------------------------------------
+
+The middle layer is Control Layer, which contains Control Function, Dataset Aggregation (Function) and 3rd Party Dataset. The control function stands for entities that can control, configure and operate devices, especially network devices. In SDN, controller and orchestrator are control functions. Classical network devices such as routers integrate the forwarding and control functions (although as of today not with many instances of intelligent control functions). Classical routers therefore include functions from two layers. We foresee that the control function will most likely only perform intelligent inference, but not learn. For example, to execute neural networks, but do not train them. This is only an assumption at this time though and may prove to be wrong in the future when training becomes something easier defined into the control layer.
+
+The aggregated dataset function owns the ability to gather and tidy the data. The database or database cluster is the typical example. Some of the control devices, such as SDN controller, integrate this function. Distributed instances aggregate data have also been defined. The network data can be directly sent back to the control function in support of network policies. For example, the controller can adjust the flow table according to the local cache which collects the network data periodically from the devices in its controlled area. The 3rd party dataset involves the data that may be provided by all kinds of applications or services. For example, the content provider may own social contact data and the map service provider may own the geographic data. This information does not belong to the network but could be very helpful for intelligent analytics and decision making in the network ¨C which is why we device in the architecture the ability to communicate it between 3rd parties and the network. 
+
+The high layer, which is also the main body of IDN, is the Intelligence Layer. This layer is commonly deployed in the datacenter, or large scale computing centre that can support massive storage and computing resources. To the south direction, there are two interfaces which provides external data (3rd party data oriented) and internal data (network data oriented) access. We define a data refiner component to emphasize the need to adopt format and structure of various types of collected information to the needs of the IDN Engine.
+
+The core of the IDN Engine are algorithm and model. The IDN Engine can be built based on the result of the large body of research and platform development work that already exists (albeit mostly developed for and deployed with non-network data). The platform should be agile extensible for future services, therefore we define a 3rd party Algorithm Interface to provide an adaptive developing ability. The user (or a 3rd party) may develop his/her own algorithms and upload then onto the IDN Engine via a northbound Open Application Interface. Additional Northbound Open Application interfaces can also be used to connect other software platforms to the IDN Engine to create a cooperation between multiple systems (not shown).
+The output of IDN Engine is transmitted to the Policy Generator. Since the policy language might be machine readable or unreadable, the Policy Generator is responsible for generating the executable commands and connect to the control devices. This process refers to the interactions of northbound interface of control devices ¨C which is what often gets standardized. Therefore, some of the potential standardization points will be mentioned in the following. 
+
+
+5.2 Measurement
+In IDN, the intelligent system (or database) needs frequent and repeat measurement to obtain the link information. A fast measure and feedback protocol is needed to meet the requirement of measurement and data collecting. It may be based on SNMP or an absolutely new protocol. The intelligent system needs massive data to feed and support to formulate the policy and decision. Therefore, the measurement must be satisfy the data requirement of IDN. Firstly, there may be higher-level requirement for the existing measuring technology. The high timeliness is one of the potential point. The IDN¡¯s control function needs accurate, global and highly real-time network data support. The current measure technology can only satisfy at least two characters of the three. Secondly, the IDN may need more kinds of data type to measure. Not only the delay, jitter and packet loss rate, but also the link utilization and other necessary parameters. 
+
+5.3 Data representation, transport and aggregation
+The data representation is significant. Most of the current AI algorithms were born in the pattern recognition area, especially the image processing. The advantage of these algorithms is that they are very good at dealing with complex problems, especially mining and modeling the hidden relationship among the non-semantic data. One of the disadvantages is that almost all the algorithms require the training data has a high concordance. Fortunately, the image file instinctively owns this character. All the images can be expressed as uniform binary vectors or can be easily transformed into uniform format. But this condition is hardly satisfied in network area. 
+A uniform data format is required, which can implement the justification, correlation and affiliation of the data. Which may obtain the best performance of AI algorithm to mine the valid pattern hidden in the data. Since the intelligent system  is data-driven, and the data resources are from different kind of vendors and device types, the data representation SHALL be consistent so that the intelligent system could merge the data and do the analysis/learning. Also, the data collection interface might also need to be standardized so that the interface is able to get the data the intelligent system needs.
+Moreover, it is significant to standard the policy representation. Since there may multiply SDN controller system, a readable and uniform policy representation is valuable to improve the policy deploying efficiency and simplify the communication between controllers on the East-West direction. 
+
+5.4 Legacy Device Route control
+Similar with IPv4/IPv6 transition, the IDN potentially faces to the legacy problem, which means that the new devices and functions will co-work with the legacy devices. Therefore, it is potentially required to design the control protocols to solve the transition problems. 
+
+5.5 TBD
+
+5.6 TBD
+
+
+6.  Security Considerations
+When security relevant decisions are made based on the use of intelligent analytics or automated intelligent decision making, care must be taken to understand the new security challenges. When for example more intelligent decisions are enabled through the collection of ever more data, it needs to be analyzed how that potentially enables attackers to easier feed data that derails the intelligent system ability to distinguish good from bad behavior.
+
+
+References
+[1] xxx
+[2] xxx
+
+
+			 
+			 
