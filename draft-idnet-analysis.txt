@@ -286,6 +286,11 @@ References
 [PMJ1] https://www.ncbi.nlm.nih.gov/genome/
 [PMJ2] https://www.ncbi.nlm.nih.gov/genbank/
 [PMJ3] https://www.rcsb.org/pdb/home/home.do
+[REF1] Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A.A., Veness, J., Bellemare, M.G., Graves, A., Riedmiller, M., Fidjeland, A.K., Ostrovski, G. and Petersen, S., 2015. Human-level control through deep reinforcement learning. Nature, 518(7540), pp.529-533.
+[REF2] Stampa G, Arias M, Sanchez-Charles D, Muntes-Mulero V, Cabellos A. A Deep-Reinforcement Learning Approach for Software-Defined Networking Routing Optimization. arXiv preprint arXiv:1709.07080. 2017 Sep 20.
+[REF3] Ian F Akyildiz, Ahyoung Lee, Pu Wang, Min Luo, and Wu Chou. A roadmap for traffic engineering in SDN-OpenFlow networks. Computer Networks, 71(C):130, October 2014. 
+[REF4] Justin A Boyan and Michael L Littman. Packet routing in dynamically changing networks: A reinforcement learning approach. In Advances in neural information processing systems, pages 671678, 1994
+[REF5] Orsolic I, Pevec D, Suznjevic M, Skorin-Kapov L. A machine learning approach to classifying YouTube QoE based on encrypted network traffic. Multimedia Tools and Applications. 2017 Jan 1:1-35.
 
 
 			 
