@@ -6,6 +6,8 @@ none                                                              S. Yan
 Internet-Draft                                                    Huawei
 Intended status: Informational                         P. Martinez-Julia
 Expires: May 5, 2018                                          NICT/Japan
+                                                    A. Cabellos-Aparicio
+                                       Technical University of Catalonia
                                                        November 01, 2017
 
 
@@ -48,16 +50,16 @@ Copyright Notice
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
    (https://trustee.ietf.org/license-info) in effect on the date of
-   publication of this document.  Please review these documents
-   carefully, as they describe your rights and restrictions with respect
 
 
 
-Yan & Pedro                Expires May 5, 2018                  [Page 1]
+Yan, et al.                Expires May 5, 2018                  [Page 1]
 
 Internet-Draft               Network slicing               November 2017
 
 
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
    include Simplified BSD License text as described in Section 4.e of
    the Trust Legal Provisions and are provided without warranty as
@@ -67,27 +69,28 @@ Table of Contents
 
    1.  Problem Statement and General Requirements  . . . . . . . . .   2
    2.  Scope and use cases . . . . . . . . . . . . . . . . . . . . .   2
-     2.1.  Scope . . . . . . . . . . . . . . . . . . . . . . . . . .   2
+     2.1.  Scope . . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.2.  High Value Use Cases  . . . . . . . . . . . . . . . . . .   3
        2.2.1.  Traffic Prediction  . . . . . . . . . . . . . . . . .   3
        2.2.2.  QoS management  . . . . . . . . . . . . . . . . . . .   4
-       2.2.3.  TBD . . . . . . . . . . . . . . . . . . . . . . . . .   5
-       2.2.4.  TBD . . . . . . . . . . . . . . . . . . . . . . . . .   5
-   3.  Measurement and Data Format . . . . . . . . . . . . . . . . .   5
-     3.1.  Measurement Tools and Methods . . . . . . . . . . . . . .   5
-     3.2.  Data Format Analysis  . . . . . . . . . . . . . . . . . .   5
-   4.  Benchmarking Framework  . . . . . . . . . . . . . . . . . . .   6
-   5.  References Model and Potential Standardization Points . . . .   6
-     5.1.  References Model  . . . . . . . . . . . . . . . . . . . .   6
-     5.2.  Measurement . . . . . . . . . . . . . . . . . . . . . . .   9
-     5.3.  ata representation, transport and aggregation . . . . . .  10
-     5.4.  Legacy Device Route control . . . . . . . . . . . . . . .  10
-     5.5.  TBD . . . . . . . . . . . . . . . . . . . . . . . . . . .  10
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  10
-   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  11
-   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  11
-   9.  Informative References  . . . . . . . . . . . . . . . . . . .  11
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  11
+       2.2.3.  Deep Reinforcement-Learning Control of the Network  .   5
+       2.2.4.  QoE Management via Supervised Learning  . . . . . . .   8
+       2.2.5.  TBD . . . . . . . . . . . . . . . . . . . . . . . . .   9
+   3.  Measurement and Data Format . . . . . . . . . . . . . . . . .   9
+     3.1.  Measurement Tools and Methods . . . . . . . . . . . . . .   9
+     3.2.  Data Format Analysis  . . . . . . . . . . . . . . . . . .   9
+   4.  Benchmarking Framework  . . . . . . . . . . . . . . . . . . .   9
+   5.  References Model and Potential Standardization Points . . . .  10
+     5.1.  References Model  . . . . . . . . . . . . . . . . . . . .  10
+     5.2.  Measurement . . . . . . . . . . . . . . . . . . . . . . .  13
+     5.3.  ata representation, transport and aggregation . . . . . .  14
+     5.4.  Legacy Device Route control . . . . . . . . . . . . . . .  14
+     5.5.  TBD . . . . . . . . . . . . . . . . . . . . . . . . . . .  14
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
+   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
+   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  15
+   9.  Informative References  . . . . . . . . . . . . . . . . . . .  15
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
 
 1.  Problem Statement and General Requirements
 
@@ -101,19 +104,21 @@ Table of Contents
 
    TBD
 
+
+
+
+
+
+Yan, et al.                Expires May 5, 2018                  [Page 2]
+
+Internet-Draft               Network slicing               November 2017
+
+
 2.1.  Scope
 
    A general description about what should be focused during the IETF
    work and what should not.  Clarify the work boundary. (e.g. in my
    personal opinion, the pure algorithm research will not be suitable
-
-
-
-Yan & Pedro                Expires May 5, 2018                  [Page 2]
-
-Internet-Draft               Network slicing               November 2017
-
-
    for our IETF works since it is not relative with protocols and
    communications.  Also, the architecture work will be not suitable.
    But we need one, such as the one discussed at IETF-99, for
@@ -157,18 +162,19 @@ Internet-Draft               Network slicing               November 2017
 
          Request: ask for the data
 
+
+
+
+Yan, et al.                Expires May 5, 2018                  [Page 3]
+
+Internet-Draft               Network slicing               November 2017
+
+
          Reply: Data
 
          Notice: For notification or others
 
          Policy: Control policy
-
-
-
-Yan & Pedro                Expires May 5, 2018                  [Page 3]
-
-Internet-Draft               Network slicing               November 2017
-
 
 2.2.2.  QoS management
 
@@ -212,19 +218,19 @@ Internet-Draft               Network slicing               November 2017
    worthless.  I think the protocols that support high frequency
    measurement and data collection may become one of our focus point.
 
+
+
+
+Yan, et al.                Expires May 5, 2018                  [Page 4]
+
+Internet-Draft               Network slicing               November 2017
+
+
    The process, data format and message needs are:
 
    Process: 1.  Data capture (e.g. traffic sample of physical/logical
    port ); 2.  Training Model; 3.  Real-time data capture and input; 4.
    Output percentages; 5.  Fix error and go back to 3.
-
-
-
-
-Yan & Pedro                Expires May 5, 2018                  [Page 4]
-
-Internet-Draft               Network slicing               November 2017
-
 
    Data Format:
 
@@ -245,13 +251,213 @@ Internet-Draft               Network slicing               November 2017
 
          Policy: Control policy
 
-2.2.3.  TBD
+2.2.3.  Deep Reinforcement-Learning Control of the Network
 
-   TBD
+   Recently important breakthroughs have been achieved in the area Deep-
+   Reinforcement Learning (DRL) [REF1] architectures where agents can be
+   trained online to operate complex environments and achieve quasi-
+   optimal configurations.  In this context, a DRL can be used to
+   control the routing of the network and achieve the target policy set
+   by the administrators (e.g., [REF2, REF3, REF4]).
 
-2.2.4.  TBD
+   The following figure describes a common architecture of a DRL
+   operating a network.  The agent acts upon the network (action) by
+   changing the configuration, this results in the network changing its
+   fundamental state (e.g, different per-link utilization and a
+   different traffic load).  Finally, the reward function is defined by
+   the operator and represents the target performance (e.g., load-
+   balance the traffic in the network).  The agent will learn how to act
+   upon the network to maximize the expected reward function.
 
-   TBD
+
+
+
+
+
+
+
+
+Yan, et al.                Expires May 5, 2018                  [Page 5]
+
+Internet-Draft               Network slicing               November 2017
+
+
+                             +---------------+
+          +------------------>               |
+          |                  |     Agent     +---------------------+
+          |  +--------------->               |                     |
+          |  |               +---------------+                     |
+          |  |                                                     |
+    State |  |                                                     |
+          |  |  Reward Function (Policy)                    Action |
+          |  |                                                     |
+          |  |                                                     |
+          |  |                                                     |
+          |  |    +------------------------------------+           |
+          |  +----+                                    |           |
+          +-------+              Network               <-----------+
+                  |                                    |
+                  +------------------------------------+
+
+   The main operational advantages of DRL agents with respect to
+   existing optimization techniques are:
+
+   1.  DRL are able to learn and generalize from past experience to
+       provide solutions to unseen scenarios.  This is not possible
+       using existing optimization techniques that do not learn from the
+       past.
+
+   2.  Once trained, either offline or online, DRL agents can optimize
+       in one single step.  On the contrary, existing optimization
+       techniques require to run iteratively each time a new scenario is
+       found, for instance when a link goes down or the traffic changes
+       in a significant way.  It is worth noting that a common practice
+       is to run such techniques in advance of common scenarios and
+       store their resulting configurations, however it is very complex
+       to consider all the potential scenarios.
+
+   3.  DRL agents see the network as a black-box and do no need any
+       prior assumption about the system.  However heuristics, very
+       commonly used in optimization strategies, are tailored for the
+       problem they are trying to optimize.  However, an operator only
+       needs to change the reward function to implement a different
+       target network policy.
+
+   In what follows we describe the process, data format and messages
+   needed assuming a DRL agent that seeks to load-balance the traffic of
+   the network that is, to minimize the maximum loaded link.  This is a
+   very common optimization strategy.
+
+   Process: 1.- Act upon the network by changing the routing
+   configuration, for instance using a standard mechanism. 2.- Receive
+
+
+
+Yan, et al.                Expires May 5, 2018                  [Page 6]
+
+Internet-Draft               Network slicing               November 2017
+
+
+   the state of the network, this is the per-link delay and the current
+   traffic load. 3.- Compute the reward function as a function of the
+   state. 4.- Deep Reinforcement Learning training. 5.- Go back to step
+   1.
+
+   Data Format
+
+      (state) Per-Link Utilization: [link id, utilization, averaging
+      time]
+
+      (action) Change on the routing configuration.  This can be done
+      through the SDN controller and/or other standard mechanisms.
+
+      (reward) This is an algorithm that has as input the state and as
+      output a value that represents how close we are to the target
+      policy set by the operator.  More about this can be found in the
+      next section.
+
+      Messages:
+
+
+
+         State: Measure the per-link utilization
+
+         Action: Change the routing configuration
+
+2.2.3.1.  The Reward Function as the Network Policy
+
+   The agent seek to maximize the expected reward function and it
+   represents the target policy that the agent will aim to achieve and
+   configure on the network.  In this context the reward function is the
+   mathematical representation of the target network policy.  However,
+   the entire architecture includes a set of different pieces that may
+   come from different vendors but must interoperate, the pieces are:
+   the agent itself, the reward function and the state.  This requires
+   the following standardization efforts:
+
+   1.  The reward function and its translation from the human-readable
+       target network policy.  The operators may want to use different
+       vendor DRL agents that need to understand the reward function.
+       Please note that the reward function depends on the
+       representation of the state.
+
+   2.  The state includes monitoring information about the network, such
+       as the per-link utilization or the traffic load.  Since the state
+       is an input of the agent and is used in the reward function,
+       there is a need for standard representation so that the different
+       pieces can interoperate.
+
+
+
+Yan, et al.                Expires May 5, 2018                  [Page 7]
+
+Internet-Draft               Network slicing               November 2017
+
+
+2.2.4.  QoE Management via Supervised Learning
+
+   Networks can measure low-level metrics, such as delay, jitter and
+   losses.  However users perceive the performance of the network based
+   on QoE metrics, such as Mean Opinion Scores.  Unfortunately, QoE
+   metrics cannot be typically directly measured over the wire and as
+   such, need the subjective views of the users.  The challenge is then
+   to operate the network based on low-level metrics while fulfilling
+   non-measurable QoE metrics.  One of the main reason behind this
+   challenge is that the relationship between the low-level and the QoE
+   metrics are very complex, i.e. multi-dimensional and non-lineal.
+
+     +-------------+            +---------------------+
+     |  Supervised |  Extract   |Relation between QoE |
+     |  Learning   +-Knowledge-->and low-level network+-------+
+     |             |            |metrics              |       |
+     +------^------+            +---------------------+       |
+            +                                                 |
+          Learn                                               |
+            |                                         Install Knowledge
+            |                                                 |
+ +----------+--------------+                    +-------------v---------+
+ |    Network Analytics    |                    |                       |
+ | (including Ground Truth)|                    |  Network Management   |
+ |                         |                    |                       |
+ +----------+--------------+                    +-------------+---------+
+            ^                                                 |
+            |                                                 |
+            |                   +-------------+               |
+            |                   |             |               |
+            +-----Monitor-------+   Network   <----Operate----+
+                                |             |
+                                +-------------+
+
+   For this a well-established technique (e.g, see [REF5] and the
+   references therein) is to follow the architecture depicted in the
+   following figure.  First the network low-level metrics are measured
+   using telemetry, this information is stored in the Network Analytics
+   platform.  In addition to this users and or applications are polled
+   to obtain QoE metrics of the network.  The data-set containing both
+   the low-level metrics and the QoE metrics is considered the ground
+   truth.
+
+   By means of supervised learning (e..g, deep neural networks) we aim
+   to learn the relation between the low-level and the QoE metrics.  As
+   an example we aim to learn the relation between the amounts of losses
+   in different wireless links, the SNR and the utilization with the
+   perceived MoS.  Typically it has been shown that such relationship is
+
+
+
+Yan, et al.                Expires May 5, 2018                  [Page 8]
+
+Internet-Draft               Network slicing               November 2017
+
+
+   non-lineal and multi-dimensional and as such, can be understood by a
+   neural network.  This relationship is the knowledge that we extract
+   from the ground truth and it is used by the Network Management (NM)
+   module.  By means of this knowledge, the NM can understand how to
+   operate the network based on low-level metrics (e.g., keep losses
+   below a certain threshold) to fulfill QoE requirements.
+
+2.2.5.  TBD
 
 3.  Measurement and Data Format
 
@@ -269,18 +475,6 @@ Internet-Draft               Network slicing               November 2017
    Including the aggregation of labelling and other stuff.  The
    requirements of the network AI algorithm for the input/output.  The
    expression of labels, meta-data, policies, and so on.
-
-
-
-
-
-
-
-
-Yan & Pedro                Expires May 5, 2018                  [Page 5]
-
-Internet-Draft               Network slicing               November 2017
-
 
 4.  Benchmarking Framework
 
@@ -304,6 +498,14 @@ Internet-Draft               Network slicing               November 2017
    considering it is represented using the same concepts (ontology) and
    the standard format mentioned here.  As a reference, it is worth to
    mention that a similar appraoch has been alreday applied to genome
+
+
+
+Yan, et al.                Expires May 5, 2018                  [Page 9]
+
+Internet-Draft               Network slicing               November 2017
+
+
    and protein data to build standardized and easily transferable data
    banks [PMJ1][PMJ2] [PMJ3], and they have demonstrated to be key
    enablers in their respective work areas.
@@ -333,7 +535,29 @@ Internet-Draft               Network slicing               November 2017
 
 
 
-Yan & Pedro                Expires May 5, 2018                  [Page 6]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yan, et al.                Expires May 5, 2018                 [Page 10]
 
 Internet-Draft               Network slicing               November 2017
 
@@ -389,7 +613,7 @@ Internet-Draft               Network slicing               November 2017
 
 
 
-Yan & Pedro                Expires May 5, 2018                  [Page 7]
+Yan, et al.                Expires May 5, 2018                 [Page 11]
 
 Internet-Draft               Network slicing               November 2017
 
@@ -445,7 +669,7 @@ Internet-Draft               Network slicing               November 2017
 
 
 
-Yan & Pedro                Expires May 5, 2018                  [Page 8]
+Yan, et al.                Expires May 5, 2018                 [Page 12]
 
 Internet-Draft               Network slicing               November 2017
 
@@ -501,7 +725,7 @@ Internet-Draft               Network slicing               November 2017
 
 
 
-Yan & Pedro                Expires May 5, 2018                  [Page 9]
+Yan, et al.                Expires May 5, 2018                 [Page 13]
 
 Internet-Draft               Network slicing               November 2017
 
@@ -557,7 +781,7 @@ Internet-Draft               Network slicing               November 2017
 
 
 
-Yan & Pedro                Expires May 5, 2018                 [Page 10]
+Yan, et al.                Expires May 5, 2018                 [Page 14]
 
 Internet-Draft               Network slicing               November 2017
 
@@ -582,7 +806,41 @@ Internet-Draft               Network slicing               November 2017
 
    [PMJ3]     , <https://www.rcsb.org/pdb/home/home.do>.
 
+   [REF1]     "Human-level control through deep reinforcement learning.
+              Nature, 518(7540), pp.529-533.", 2015.
+
+   [REF2]     "A Deep-Reinforcement Learning Approach for Software-
+              Defined Networking Routing Optimization. arXiv preprint
+              arXiv:1709.07080.", September 2017.
+
+   [REF3]     "A roadmap for traffic engineering in SDN-OpenFlow
+              networks.  Computer Networks, 71(C):1&#150;30", October
+              2014.
+
+   [REF4]     "Packet routing in dynamically changing networks: A
+              reinforcement learning approach. In Advances in neural
+              information processing systems, pages 671&#150;678,",
+              1994.
+
+   [REF5]     "A machine learning approach to classifying YouTube QoE
+              based on encrypted network traffic. Multimedia Tools and
+              Applications", January 2017.
+
 Authors' Addresses
+
+
+
+
+
+
+
+
+
+
+Yan, et al.                Expires May 5, 2018                 [Page 15]
+
+Internet-Draft               Network slicing               November 2017
+
 
    Shen Yan
    Huawei
@@ -599,6 +857,10 @@ Authors' Addresses
    Email: pedro@nict.go.jp
 
 
+   Albert Cabellos-Aparicio
+   Technical University of Catalonia
+
+   Email: albert.cabellos@gmail.com
 
 
 
@@ -613,4 +875,22 @@ Authors' Addresses
 
 
 
-Yan & Pedro                Expires May 5, 2018                 [Page 11]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yan, et al.                Expires May 5, 2018                 [Page 16]
