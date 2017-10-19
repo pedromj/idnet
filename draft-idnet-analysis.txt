@@ -1,4 +1,4 @@
-##  [PREFACE]  ##
+##  [PREFACE]  ## 
 #
 # Please edit directly in-line. Yan Shen will be responsible for editing this into IETF draft text file. 
 #
