@@ -92,9 +92,85 @@ Message : 		Request: ask for the data
 
 				
 				
-2.2.3 TBD...
+2.2.3 Deep Reinforcement-Learning Control of the Network
 
-2.2.4 TBD...
+Recently important breakthroughs have been achieved in the area Deep-Reinforcement Learning (DRL) [REF1] architectures where agents can be trained online to operate complex environments and achieve quasi-optimal configurations. In this context, a DRL can be used to control the routing of the network and achieve the target policy set by the administrators (e.g., [REF2, REF3, REF4]).
+The following figure describes a common architecture of a DRL operating a network. The agent acts upon the network (action) by changing the configuration, this results in the network changing its fundamental state (e.g, different per-link utilization and a different traffic load). Finally, the reward function is defined by the operator and represents the target performance (e.g., load-balance the traffic in the network). The agent will learn how to act upon the network to maximize the expected reward function.
+
+                         +---------------+
+      +------------------>               |
+      |                  |     Agent     +---------------------+
+      |  +--------------->               |                     |
+      |  |               +---------------+                     |
+      |  |                                                     |
+State |  |                                                     |
+      |  |  Reward Function (Policy)                    Action |
+      |  |                                                     |
+      |  |                                                     |
+      |  |                                                     |
+      |  |    +------------------------------------+           |
+      |  +----+                                    |           |
+      +-------+              Network               <-----------+
+              |                                    |
+              +------------------------------------+
+			  
+The main operational advantages of DRL agents with respect to existing optimization techniques are:
+
+1)	DRL are able to learn and generalize from past experience to provide solutions to unseen scenarios. This is not possible using existing optimization techniques that do not learn from the past. 
+2)	Once trained, either offline or online, DRL agents can optimize in one single step. On the contrary, existing optimization techniques require to run iteratively each time a new scenario is found, for instance when a link goes down or the traffic changes in a significant way. It is worth noting that a common practice is to run such techniques in advance of common scenarios and store their resulting configurations, however it is very complex to consider all the potential scenarios. 
+3)	DRL agents see the network as a black-box and do no need any prior assumption about the system. However heuristics, very commonly used in optimization strategies, are tailored for the problem they are trying to optimize. However, an operator only needs to change the reward function to implement a different target network policy.
+
+In what follows we describe the process, data format and messages needed assuming a DRL agent that seeks to load-balance the traffic of the network that is, to minimize the maximum loaded link. This is a very common optimization strategy.
+
+Process: 1.- Act upon the network by changing the routing configuration, for instance using a standard mechanism. 2.- Receive the state of the network, this is the per-link delay and the current traffic load. 3.- Compute the reward function as a function of the state. 4.- Deep Reinforcement Learning training. 5.- Go back to step 1.
+
+Data Format: 	
+	(state) Per-Link Utilization: [link id, utilization, averaging time]
+	(action) Change on the routing configuration. This can be done through the SDN controller and/or other standard mechanisms.
+	(reward) This is an algorithm that has as input the state and as output a value that represents how close we are to the target policy set by the operator. More about this can be found in the next section.
+
+Messages: 		
+	State: Measure the per-link utilization
+	Action: Change the routing configuration
+
+2.2.3.1.- The Reward Function as the Network Policy 
+
+The agent seek to maximize the expected reward function and it represents the target policy that the agent will aim to achieve and configure on the network. In this context the reward function is the mathematical representation of the target network policy. However, the entire architecture includes a set of different pieces that may come from different vendors but must interoperate, the pieces are: the agent itself, the reward function and the state. This requires the following standardization efforts:
+
+1)	The reward function and its translation from the human-readable target network policy. The operators may want to use different vendor DRL agents that need to understand the reward function. Please note that the reward function depends on the representation of the state.
+2)	The state includes monitoring information about the network, such as the per-link utilization or the traffic load. Since the state is an input of the agent and is used in the reward function, there is a need for standard representation so that the different pieces can interoperate.
+
+2.2.4 QoE Management via Supervised Learning
+
+Networks can measure low-level metrics, such as delay, jitter and losses. However users perceive the performance of the network based on QoE metrics, such as Mean Opinion Scores. Unfortunately, QoE metrics cannot be typically directly measured over the wire and as such, need the subjective views of the users. The challenge is then to operate the network based on low-level metrics while fulfilling non-measurable QoE metrics. One of the main reason behind this challenge is that the relationship between the low-level and the QoE metrics are very complex, i.e. multi-dimensional and non-lineal.
+
+    +-------------+            +---------------------+
+    |  Supervised |  Extract   |Relation between QoE |
+    |  Learning   +-Knowledge-->and low-level network+-------+
+    |             |            |metrics              |       |
+    +------^------+            +---------------------+       |
+           +                                                 |
+         Learn                                               |
+           |                                         Install Knowledge
+           |                                                 |
++----------+--------------+                    +-------------v---------+
+|    Network Analytics    |                    |                       |
+| (including Ground Truth)|                    |  Network Management   |
+|                         |                    |                       |
++----------+--------------+                    +-------------+---------+
+           ^                                                 |
+           |                                                 |
+           |                   +-------------+               |
+           |                   |             |               |
+           +-----Monitor-------+   Network   <----Operate----+
+                               |             |
+                               +-------------+
+							   
+For this a well-established technique (e.g, see [REF5] and the references therein) is to follow the architecture depicted in the following figure. First the network low-level metrics are measured using telemetry, this information is stored in the Network Analytics platform. In addition to this users and or applications are polled to obtain QoE metrics of the network. The data-set containing both the low-level metrics and the QoE metrics is considered the ground truth.
+
+By means of supervised learning (e..g, deep neural networks)  we aim to learn the relation between the low-level and the QoE metrics. As an example we aim to learn the relation between the amounts of losses in different wireless links, the SNR and the utilization with the perceived MoS. Typically it has been shown that such relationship is non-lineal and multi-dimensional and as such, can be understood by a neural network. This relationship is the knowledge that we extract from the ground truth and it is used by the Network Management (NM) module. By means of this knowledge, the NM can understand how to operate the network based on low-level metrics (e.g., keep losses below a certain threshold) to fulfill QoE requirements. 
+
+
 
 
 
@@ -204,6 +280,7 @@ When security relevant decisions are made based on the use of intelligent analyt
 
 
 References
+=======
 [1] xxx
 [2] xxx
 [PMJ1] https://www.ncbi.nlm.nih.gov/genome/
