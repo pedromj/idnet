@@ -11,6 +11,7 @@
 
 [Author List]
 Shen Yan, Huawei Technologies
+Pedro Martinez-Julia, NICT/Japan
 TBD, TBD
 
 
@@ -109,7 +110,13 @@ Including the aggregation of labelling and other stuff. The requirements of the 
 
 
 4.	Benchmarking Framework
-A proper benchmarking framework comprises a set of reference procedures, methods, and models that can (or better *must*) be followed to assess the quality of an AI mechanism proposed to be applied to the network management/control area. Moreover, and much more specific to the IDNET topics, is the inclusion, dependency, or just the general relation of a standard format enforced to the data that is used (input) and produced (output) by the framework, so a kind of "data market" can arise without requiring to transform the data. The initial scope of input/output data would be the datasets, but also the new knowledge items that are stated as a result of applying the benchmarking procedures defined by the framework, which can be collected together to build a database of benchmark results, or just contrasted with other existing entries in the database to know the position of the solution just evaluated. This increases the usefulness of IDNET.
+A standard benchmarking framework is required to assess the quality of an AI mechanism when it is used to resolve a specific problem in the network maangement and control area. It comprises a reference set of procedures, methods, models, and boundary values that *must* be enforced to the benchmarked mechanism, so that its operation can be comparable to other mechanisms and users can easily understand what to expect from each one.
+
+Moreover, both the metrics included as a reference within the benchmarking framework and the results obtained from its application to a new mechanism must follow a standard format. Therefore, the standard formats must be enforced to all data, either being introduced to the benchmarking application or system (consumed), or obtained from its application (produced).
+
+A common and decentralized "data market" can (and would) arise from the inclusion, dependency, and the general relation of all data, considering it is represented using the same concepts (ontology) and the standard format mentioned here. As a reference, it is worth to mention that a similar appraoch has been alreday applied to genome and protein data to build standardized and easily transferable data banks [PMJ1][PMJ2] [PMJ3], and they have demonstrated to be key enablers in their respective work areas.
+
+The initial scope of input/output data would be the datasets, but also the new knowledge items that are stated as a result of applying the benchmarking procedures defined by the framework, which can be collected together to build a database of benchmark results, or just contrasted with other existing entries in the database to know the position of the solution just evaluated. This increases the usefulness of IDNET.
 
 
 5.	References Model and Potential Standardization Points
@@ -156,28 +163,28 @@ The under layer is Infrastructure layer, which contains network function, measur
     Type	                              Content
 -----------------------------------------------------------------
   Network Data	        Delay, Jitter, Packet Lose Rate,
-                        Link Utilization, ¡­
+                        Link Utilization, Â¡Â­
   Device Data	        Device Configuration, VPN Configuration, 
-                        Slicing Configuration, ¡­
-  User Data	            QoE Feedback, User Information, ¡­
+                        Slicing Configuration, Â¡Â­
+  User Data	            QoE Feedback, User Information, Â¡Â­
   
-  Data Packet	        Packet Sample, Packet Character, ¡­
+  Data Packet	        Packet Sample, Packet Character, Â¡Â­
   
   Other Type	        TBD
 -----------------------------------------------------------------
 
 The middle layer is Control Layer, which contains Control Function, Dataset Aggregation (Function) and 3rd Party Dataset. The control function stands for entities that can control, configure and operate devices, especially network devices. In SDN, controller and orchestrator are control functions. Classical network devices such as routers integrate the forwarding and control functions (although as of today not with many instances of intelligent control functions). Classical routers therefore include functions from two layers. We foresee that the control function will most likely only perform intelligent inference, but not learn. For example, to execute neural networks, but do not train them. This is only an assumption at this time though and may prove to be wrong in the future when training becomes something easier defined into the control layer.
 
-The aggregated dataset function owns the ability to gather and tidy the data. The database or database cluster is the typical example. Some of the control devices, such as SDN controller, integrate this function. Distributed instances aggregate data have also been defined. The network data can be directly sent back to the control function in support of network policies. For example, the controller can adjust the flow table according to the local cache which collects the network data periodically from the devices in its controlled area. The 3rd party dataset involves the data that may be provided by all kinds of applications or services. For example, the content provider may own social contact data and the map service provider may own the geographic data. This information does not belong to the network but could be very helpful for intelligent analytics and decision making in the network ¨C which is why we device in the architecture the ability to communicate it between 3rd parties and the network. 
+The aggregated dataset function owns the ability to gather and tidy the data. The database or database cluster is the typical example. Some of the control devices, such as SDN controller, integrate this function. Distributed instances aggregate data have also been defined. The network data can be directly sent back to the control function in support of network policies. For example, the controller can adjust the flow table according to the local cache which collects the network data periodically from the devices in its controlled area. The 3rd party dataset involves the data that may be provided by all kinds of applications or services. For example, the content provider may own social contact data and the map service provider may own the geographic data. This information does not belong to the network but could be very helpful for intelligent analytics and decision making in the network Â¨C which is why we device in the architecture the ability to communicate it between 3rd parties and the network. 
 
 The high layer, which is also the main body of IDN, is the Intelligence Layer. This layer is commonly deployed in the datacenter, or large scale computing centre that can support massive storage and computing resources. To the south direction, there are two interfaces which provides external data (3rd party data oriented) and internal data (network data oriented) access. We define a data refiner component to emphasize the need to adopt format and structure of various types of collected information to the needs of the IDN Engine.
 
 The core of the IDN Engine are algorithm and model. The IDN Engine can be built based on the result of the large body of research and platform development work that already exists (albeit mostly developed for and deployed with non-network data). The platform should be agile extensible for future services, therefore we define a 3rd party Algorithm Interface to provide an adaptive developing ability. The user (or a 3rd party) may develop his/her own algorithms and upload then onto the IDN Engine via a northbound Open Application Interface. Additional Northbound Open Application interfaces can also be used to connect other software platforms to the IDN Engine to create a cooperation between multiple systems (not shown).
-The output of IDN Engine is transmitted to the Policy Generator. Since the policy language might be machine readable or unreadable, the Policy Generator is responsible for generating the executable commands and connect to the control devices. This process refers to the interactions of northbound interface of control devices ¨C which is what often gets standardized. Therefore, some of the potential standardization points will be mentioned in the following. 
+The output of IDN Engine is transmitted to the Policy Generator. Since the policy language might be machine readable or unreadable, the Policy Generator is responsible for generating the executable commands and connect to the control devices. This process refers to the interactions of northbound interface of control devices Â¨C which is what often gets standardized. Therefore, some of the potential standardization points will be mentioned in the following. 
 
 
 5.2 Measurement
-In IDN, the intelligent system (or database) needs frequent and repeat measurement to obtain the link information. A fast measure and feedback protocol is needed to meet the requirement of measurement and data collecting. It may be based on SNMP or an absolutely new protocol. The intelligent system needs massive data to feed and support to formulate the policy and decision. Therefore, the measurement must be satisfy the data requirement of IDN. Firstly, there may be higher-level requirement for the existing measuring technology. The high timeliness is one of the potential point. The IDN¡¯s control function needs accurate, global and highly real-time network data support. The current measure technology can only satisfy at least two characters of the three. Secondly, the IDN may need more kinds of data type to measure. Not only the delay, jitter and packet loss rate, but also the link utilization and other necessary parameters. 
+In IDN, the intelligent system (or database) needs frequent and repeat measurement to obtain the link information. A fast measure and feedback protocol is needed to meet the requirement of measurement and data collecting. It may be based on SNMP or an absolutely new protocol. The intelligent system needs massive data to feed and support to formulate the policy and decision. Therefore, the measurement must be satisfy the data requirement of IDN. Firstly, there may be higher-level requirement for the existing measuring technology. The high timeliness is one of the potential point. The IDNÂ¡Â¯s control function needs accurate, global and highly real-time network data support. The current measure technology can only satisfy at least two characters of the three. Secondly, the IDN may need more kinds of data type to measure. Not only the delay, jitter and packet loss rate, but also the link utilization and other necessary parameters. 
 
 5.3 Data representation, transport and aggregation
 The data representation is significant. Most of the current AI algorithms were born in the pattern recognition area, especially the image processing. The advantage of these algorithms is that they are very good at dealing with complex problems, especially mining and modeling the hidden relationship among the non-semantic data. One of the disadvantages is that almost all the algorithms require the training data has a high concordance. Fortunately, the image file instinctively owns this character. All the images can be expressed as uniform binary vectors or can be easily transformed into uniform format. But this condition is hardly satisfied in network area. 
@@ -199,6 +206,9 @@ When security relevant decisions are made based on the use of intelligent analyt
 References
 [1] xxx
 [2] xxx
+[PMJ1] https://www.ncbi.nlm.nih.gov/genome/
+[PMJ2] https://www.ncbi.nlm.nih.gov/genbank/
+[PMJ3] https://www.rcsb.org/pdb/home/home.do
 
 
 			 
