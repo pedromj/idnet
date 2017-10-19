@@ -169,7 +169,7 @@ For this a well-established technique (e.g, see [REF5] and the references therei
 
 By means of supervised learning (e..g, deep neural networks)  we aim to learn the relation between the low-level and the QoE metrics. As an example we aim to learn the relation between the amounts of losses in different wireless links, the SNR and the utilization with the perceived MoS. Typically it has been shown that such relationship is non-lineal and multi-dimensional and as such, can be understood by a neural network. This relationship is the knowledge that we extract from the ground truth and it is used by the Network Management (NM) module. By means of this knowledge, the NM can understand how to operate the network based on low-level metrics (e.g., keep losses below a certain threshold) to fulfill QoE requirements. 
 
-2.2.5 TBD
+
 
 
 
