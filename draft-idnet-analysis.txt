@@ -1,4 +1,4 @@
-##  [PREFACE]  ##
+##  [PREFACE]  ## 
 #
 # Please edit directly in-line. Yan Shen will be responsible for editing this into IETF draft text file. 
 #
@@ -11,6 +11,7 @@
 
 [Author List]
 Shen Yan, Huawei Technologies
+Pedro Martinez-Julia, NICT/Japan
 TBD, TBD
 
 
@@ -185,7 +186,13 @@ Including the aggregation of labelling and other stuff. The requirements of the 
 
 
 4.	Benchmarking Framework
-A proper benchmarking framework comprises a set of reference procedures, methods, and models that can (or better *must*) be followed to assess the quality of an AI mechanism proposed to be applied to the network management/control area. Moreover, and much more specific to the IDNET topics, is the inclusion, dependency, or just the general relation of a standard format enforced to the data that is used (input) and produced (output) by the framework, so a kind of "data market" can arise without requiring to transform the data. The initial scope of input/output data would be the datasets, but also the new knowledge items that are stated as a result of applying the benchmarking procedures defined by the framework, which can be collected together to build a database of benchmark results, or just contrasted with other existing entries in the database to know the position of the solution just evaluated. This increases the usefulness of IDNET.
+A standard benchmarking framework is required to assess the quality of an AI mechanism when it is used to resolve a specific problem in the network maangement and control area. It comprises a reference set of procedures, methods, models, and boundary values that *must* be enforced to the benchmarked mechanism, so that its operation can be comparable to other mechanisms and users can easily understand what to expect from each one.
+
+Moreover, both the metrics included as a reference within the benchmarking framework and the results obtained from its application to a new mechanism must follow a standard format. Therefore, the standard formats must be enforced to all data, either being introduced to the benchmarking application or system (consumed), or obtained from its application (produced).
+
+A common and decentralized "data market" can (and would) arise from the inclusion, dependency, and the general relation of all data, considering it is represented using the same concepts (ontology) and the standard format mentioned here. As a reference, it is worth to mention that a similar appraoch has been alreday applied to genome and protein data to build standardized and easily transferable data banks [PMJ1][PMJ2] [PMJ3], and they have demonstrated to be key enablers in their respective work areas.
+
+The initial scope of input/output data would be the datasets, but also the new knowledge items that are stated as a result of applying the benchmarking procedures defined by the framework, which can be collected together to build a database of benchmark results, or just contrasted with other existing entries in the database to know the position of the solution just evaluated. This increases the usefulness of IDNET.
 
 
 5.	References Model and Potential Standardization Points
@@ -273,12 +280,12 @@ When security relevant decisions are made based on the use of intelligent analyt
 
 
 References
-[REF1] Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A.A., Veness, J., Bellemare, M.G., Graves, A., Riedmiller, M., Fidjeland, A.K., Ostrovski, G. and Petersen, S., 2015. Human-level control through deep reinforcement learning. Nature, 518(7540), pp.529-533.
-[REF2] Stampa G, Arias M, Sanchez-Charles D, Muntes-Mulero V, Cabellos A. A Deep-Reinforcement Learning Approach for Software-Defined Networking Routing Optimization. arXiv preprint arXiv:1709.07080. 2017 Sep 20.
-[REF3] Ian F Akyildiz, Ahyoung Lee, Pu Wang, Min Luo, and Wu Chou. A roadmap for traffic engineering in SDN-OpenFlow networks. Computer Networks, 71(C):130, October 2014. 
-[REF4] Justin A Boyan and Michael L Littman. Packet routing in dynamically changing networks: A reinforcement learning approach. In Advances in neural information processing systems, pages 671678, 1994
-[REF5] Orsolic I, Pevec D, Suznjevic M, Skorin-Kapov L. A machine learning approach to classifying YouTube QoE based on encrypted network traffic. Multimedia Tools and Applications. 2017 Jan 1:1-35.
-
+=======
+[1] xxx
+[2] xxx
+[PMJ1] https://www.ncbi.nlm.nih.gov/genome/
+[PMJ2] https://www.ncbi.nlm.nih.gov/genbank/
+[PMJ3] https://www.rcsb.org/pdb/home/home.do
 
 
 			 
