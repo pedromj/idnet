@@ -2,17 +2,17 @@
 
 
 
-none                                                              S. Yan
-Internet-Draft                                                    Huawei
+none                                                         S. Yan, Ed.
+Internet-Draft                                       Huawei Technologies
 Intended status: Informational                         P. Martinez-Julia
-Expires: May 5, 2018                                          NICT/Japan
+Expires: May 3, 2018                                       Cisco Systems
                                                     A. Cabellos-Aparicio
-                                       Technical University of Catalonia
-                                                       November 01, 2017
+                                                                  Orange
+                                                        October 30, 2017
 
 
         A General Considerations of Intelligence Driven Network
-                        draft-idnet-analysis-00
+                     draft-yan-idn-consideration-00
 
 Abstract
 
@@ -24,6 +24,16 @@ Abstract
    is important during the machine learning and inference process.
    Finally, a reference model of IDN is proposed, based on which the
    potential standardization work is analyzed.
+
+Requirements Language
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   [RFC2119] when they appear in ALL CAPS.  When these words are not in
+   ALL CAPS (such as "should" or "Should"), they have their usual
+   English meanings, and are not to be interpreted as [RFC2119] key
+   words.
 
 Status of This Memo
 
@@ -40,7 +50,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 5, 2018.
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 1]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
+   This Internet-Draft will expire on May 3, 2018.
 
 Copyright Notice
 
@@ -50,14 +68,6 @@ Copyright Notice
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
    (https://trustee.ietf.org/license-info) in effect on the date of
-
-
-
-Yan, et al.                Expires May 5, 2018                  [Page 1]
-
-Internet-Draft               Network slicing               November 2017
-
-
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
@@ -67,8 +77,8 @@ Internet-Draft               Network slicing               November 2017
 
 Table of Contents
 
-   1.  Problem Statement and General Requirements  . . . . . . . . .   2
-   2.  Scope and use cases . . . . . . . . . . . . . . . . . . . . .   2
+   1.  Problem Statement and General Requirements  . . . . . . . . .   3
+   2.  Scope and use cases . . . . . . . . . . . . . . . . . . . . .   3
      2.1.  Scope . . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.2.  High Value Use Cases  . . . . . . . . . . . . . . . . . .   3
        2.2.1.  Traffic Prediction  . . . . . . . . . . . . . . . . .   3
@@ -83,16 +93,30 @@ Table of Contents
    5.  References Model and Potential Standardization Points . . . .  10
      5.1.  References Model  . . . . . . . . . . . . . . . . . . . .  10
      5.2.  Measurement . . . . . . . . . . . . . . . . . . . . . . .  13
-     5.3.  ata representation, transport and aggregation . . . . . .  14
+     5.3.  Data representation, transport and aggregation  . . . . .  14
      5.4.  Legacy Device Route control . . . . . . . . . . . . . . .  14
      5.5.  TBD . . . . . . . . . . . . . . . . . . . . . . . . . . .  14
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
    8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  15
-   9.  Informative References  . . . . . . . . . . . . . . . . . . .  15
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  15
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  15
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  16
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  16
+
+
+
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 2]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
 
 1.  Problem Statement and General Requirements
+
+   Recently,
 
    An analysis of the problems, requirements and benefits of introducing
    AI into network operation and management.  The requirements in the
@@ -103,16 +127,6 @@ Table of Contents
 2.  Scope and use cases
 
    TBD
-
-
-
-
-
-
-Yan, et al.                Expires May 5, 2018                  [Page 2]
-
-Internet-Draft               Network slicing               November 2017
-
 
 2.1.  Scope
 
@@ -149,6 +163,13 @@ Internet-Draft               Network slicing               November 2017
 
       Position: [Device ID, Port ID]
 
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 3]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
       Direction: IN / OUT
 
       Route : [R1, R2, ..., RN] (might be useful for some scenarios)
@@ -161,14 +182,6 @@ Internet-Draft               Network slicing               November 2017
       Message :
 
          Request: ask for the data
-
-
-
-
-Yan, et al.                Expires May 5, 2018                  [Page 3]
-
-Internet-Draft               Network slicing               November 2017
-
 
          Reply: Data
 
@@ -204,6 +217,15 @@ Internet-Draft               Network slicing               November 2017
    modify the VPN_S_D route from S-A-B-C-D to S-I-J-K-D.  The other one
    is restricting non-object's transmission so that to protect the
    object's QoS.  For example, we increase the reserved bandwidth of
+
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 4]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
    VPN_S_D or modify the route of non-object flows from S-A-B-C-D to
    S-I-J-K-D therefore most of the traffic will not affect VPN_S_D.
 
@@ -217,14 +239,6 @@ Internet-Draft               Network slicing               November 2017
    to be captured frequently otherwise the route change will be
    worthless.  I think the protocols that support high frequency
    measurement and data collection may become one of our focus point.
-
-
-
-
-Yan, et al.                Expires May 5, 2018                  [Page 4]
-
-Internet-Draft               Network slicing               November 2017
-
 
    The process, data format and message needs are:
 
@@ -260,6 +274,14 @@ Internet-Draft               Network slicing               November 2017
    control the routing of the network and achieve the target policy set
    by the administrators (e.g., [REF2, REF3, REF4]).
 
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 5]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
    The following figure describes a common architecture of a DRL
    operating a network.  The agent acts upon the network (action) by
    changing the configuration, this results in the network changing its
@@ -268,19 +290,6 @@ Internet-Draft               Network slicing               November 2017
    the operator and represents the target performance (e.g., load-
    balance the traffic in the network).  The agent will learn how to act
    upon the network to maximize the expected reward function.
-
-
-
-
-
-
-
-
-
-Yan, et al.                Expires May 5, 2018                  [Page 5]
-
-Internet-Draft               Network slicing               November 2017
-
 
                              +---------------+
           +------------------>               |
@@ -320,6 +329,15 @@ Internet-Draft               Network slicing               November 2017
        prior assumption about the system.  However heuristics, very
        commonly used in optimization strategies, are tailored for the
        problem they are trying to optimize.  However, an operator only
+
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 6]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
        needs to change the reward function to implement a different
        target network policy.
 
@@ -330,14 +348,6 @@ Internet-Draft               Network slicing               November 2017
 
    Process: 1.- Act upon the network by changing the routing
    configuration, for instance using a standard mechanism. 2.- Receive
-
-
-
-Yan, et al.                Expires May 5, 2018                  [Page 6]
-
-Internet-Draft               Network slicing               November 2017
-
-
    the state of the network, this is the per-link delay and the current
    traffic load. 3.- Compute the reward function as a function of the
    state. 4.- Deep Reinforcement Learning training. 5.- Go back to step
@@ -375,6 +385,15 @@ Internet-Draft               Network slicing               November 2017
    the agent itself, the reward function and the state.  This requires
    the following standardization efforts:
 
+
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 7]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
    1.  The reward function and its translation from the human-readable
        target network policy.  The operators may want to use different
        vendor DRL agents that need to understand the reward function.
@@ -386,13 +405,6 @@ Internet-Draft               Network slicing               November 2017
        is an input of the agent and is used in the reward function,
        there is a need for standard representation so that the different
        pieces can interoperate.
-
-
-
-Yan, et al.                Expires May 5, 2018                  [Page 7]
-
-Internet-Draft               Network slicing               November 2017
-
 
 2.2.4.  QoE Management via Supervised Learning
 
@@ -406,30 +418,38 @@ Internet-Draft               Network slicing               November 2017
    challenge is that the relationship between the low-level and the QoE
    metrics are very complex, i.e. multi-dimensional and non-lineal.
 
-     +-------------+            +---------------------+
-     |  Supervised |  Extract   |Relation between QoE |
-     |  Learning   +-Knowledge-->and low-level network+-------+
-     |             |            |metrics              |       |
-     +------^------+            +---------------------+       |
-            +                                                 |
-          Learn                                               |
-            |                                         Install Knowledge
-            |                                                 |
- +----------+--------------+                    +-------------v---------+
- |    Network Analytics    |                    |                       |
- | (including Ground Truth)|                    |  Network Management   |
- |                         |                    |                       |
- +----------+--------------+                    +-------------+---------+
-            ^                                                 |
-            |                                                 |
-            |                   +-------------+               |
-            |                   |             |               |
-            +-----Monitor-------+   Network   <----Operate----+
-                                |             |
-                                +-------------+
+        +-------------+            +---------------------+
+        |  Supervised |  Extract   |Relation between QoE |
+        |  Learning   +-Knowledge-->and low-level network+-------+
+        |             |            |metrics              |       |
+        +------^------+            +---------------------+       |
+               +                                                 |
+             Learn                                               |
+               |                                     Install Knowledge
+               |                                                 |
+    +----------+--------------+                +-----------------v-----+
+    |    Network Analytics    |                |                       |
+    | (including Ground Truth)|                |  Network Management   |
+    |                         |                |                       |
+    +----------+--------------+                +-----------------------+
+               ^                                                 |
+               |                                                 |
+               |                   +-------------+               |
+               |                   |             |               |
+               +-----Monitor-------+   Network   <----Operate----+
+                                   |             |
+                                   +-------------+
 
-   For this a well-established technique (e.g, see [REF5] and the
+   For this a well-established technique (e.g., see [REF5] and the
    references therein) is to follow the architecture depicted in the
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 8]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
    following figure.  First the network low-level metrics are measured
    using telemetry, this information is stored in the Network Analytics
    platform.  In addition to this users and or applications are polled
@@ -437,19 +457,11 @@ Internet-Draft               Network slicing               November 2017
    the low-level metrics and the QoE metrics is considered the ground
    truth.
 
-   By means of supervised learning (e..g, deep neural networks) we aim
+   By means of supervised learning (e.g., deep neural networks) we aim
    to learn the relation between the low-level and the QoE metrics.  As
    an example we aim to learn the relation between the amounts of losses
    in different wireless links, the SNR and the utilization with the
    perceived MoS.  Typically it has been shown that such relationship is
-
-
-
-Yan, et al.                Expires May 5, 2018                  [Page 8]
-
-Internet-Draft               Network slicing               November 2017
-
-
    non-lineal and multi-dimensional and as such, can be understood by a
    neural network.  This relationship is the knowledge that we extract
    from the ground truth and it is used by the Network Management (NM)
@@ -480,11 +492,19 @@ Internet-Draft               Network slicing               November 2017
 
    A standard benchmarking framework is required to assess the quality
    of an AI mechanism when it is used to resolve a specific problem in
-   the network maangement and control area.  It comprises a reference
+   the network management and control area.  It comprises a reference
    set of procedures, methods, models, and boundary values that *must*
    be enforced to the benchmarked mechanism, so that its operation can
    be comparable to other mechanisms and users can easily understand
    what to expect from each one.
+
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 9]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
 
    Moreover, both the metrics included as a reference within the
    benchmarking framework and the results obtained from its application
@@ -497,15 +517,7 @@ Internet-Draft               Network slicing               November 2017
    the inclusion, dependency, and the general relation of all data,
    considering it is represented using the same concepts (ontology) and
    the standard format mentioned here.  As a reference, it is worth to
-   mention that a similar appraoch has been alreday applied to genome
-
-
-
-Yan, et al.                Expires May 5, 2018                  [Page 9]
-
-Internet-Draft               Network slicing               November 2017
-
-
+   mention that a similar approach has been already applied to genome
    and protein data to build standardized and easily transferable data
    banks [PMJ1][PMJ2] [PMJ3], and they have demonstrated to be key
    enablers in their respective work areas.
@@ -545,21 +557,9 @@ Internet-Draft               Network slicing               November 2017
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-Yan, et al.                Expires May 5, 2018                 [Page 10]
+Yan, et al.                Expires May 3, 2018                 [Page 10]
 
-Internet-Draft               Network slicing               November 2017
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
 
             +-----------+                          +----------+
@@ -613,9 +613,9 @@ Internet-Draft               Network slicing               November 2017
 
 
 
-Yan, et al.                Expires May 5, 2018                 [Page 11]
+Yan, et al.                Expires May 3, 2018                 [Page 11]
 
-Internet-Draft               Network slicing               November 2017
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
 
    represented as 3rd party datasets, which hopefully can be utilized in
@@ -625,12 +625,12 @@ Internet-Draft               Network slicing               November 2017
        Type                               Content
    -----------------------------------------------------------------
      Network Data        Delay, Jitter, Packet Lose Rate,
-                         Link Utilization, ?
+                         Link Utilization, ...
      Device Data         Device Configuration, VPN Configuration,
-                         Slicing Configuration, ?
-     User Data           QoE Feedback, User Information, ?
+                         Slicing Configuration, ...
+     User Data           QoE Feedback, User Information, ...
 
-     Data Packet         Packet Sample, Packet Character, ?
+     Data Packet         Packet Sample, Packet Character, ...
 
      Other Type          TBD
    -----------------------------------------------------------------
@@ -669,9 +669,9 @@ Internet-Draft               Network slicing               November 2017
 
 
 
-Yan, et al.                Expires May 5, 2018                 [Page 12]
+Yan, et al.                Expires May 3, 2018                 [Page 12]
 
-Internet-Draft               Network slicing               November 2017
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
 
    The high layer, which is also the main body of IDN, is the
@@ -725,12 +725,12 @@ Internet-Draft               Network slicing               November 2017
 
 
 
-Yan, et al.                Expires May 5, 2018                 [Page 13]
+Yan, et al.                Expires May 3, 2018                 [Page 13]
 
-Internet-Draft               Network slicing               November 2017
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
 
-5.3.  ata representation, transport and aggregation
+5.3.  Data representation, transport and aggregation
 
    The data representation is significant.  Most of the current AI
    algorithms were born in the pattern recognition area, especially the
@@ -781,14 +781,16 @@ Internet-Draft               Network slicing               November 2017
 
 
 
-Yan, et al.                Expires May 5, 2018                 [Page 14]
+Yan, et al.                Expires May 3, 2018                 [Page 14]
 
-Internet-Draft               Network slicing               November 2017
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
 
    of ever more data, it needs to be analyzed how that potentially
    enables attackers to easier feed data that derails the intelligent
    system ability to distinguish good from bad behavior.
+
+   TBD
 
 7.  IANA Considerations
 
@@ -798,7 +800,53 @@ Internet-Draft               Network slicing               November 2017
 
    TBD
 
-9.  Informative References
+9.  References
+
+9.1.  Normative References
+
+   [ISO_IEC10589]
+              "Intermediate system to Intermediate system intra-domain
+              routeing information exchange protocol for use in
+              conjunction with the protocol for providing the
+              connectionless-mode Network Service (ISO 8473), ISO/IEC
+              10589:2002, Second Edition.", Nov 2002.
+
+   [RFC1195]  Callon, R., "Use of OSI IS-IS for routing in TCP/IP and
+              dual environments", RFC 1195, DOI 10.17487/RFC1195,
+              December 1990, <https://www.rfc-editor.org/info/rfc1195>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC5301]  McPherson, D. and N. Shen, "Dynamic Hostname Exchange
+              Mechanism for IS-IS", RFC 5301, DOI 10.17487/RFC5301,
+              October 2008, <https://www.rfc-editor.org/info/rfc5301>.
+
+   [RFC5304]  Li, T. and R. Atkinson, "IS-IS Cryptographic
+              Authentication", RFC 5304, DOI 10.17487/RFC5304, October
+              2008, <https://www.rfc-editor.org/info/rfc5304>.
+
+   [RFC5305]  Li, T. and H. Smit, "IS-IS Extensions for Traffic
+              Engineering", RFC 5305, DOI 10.17487/RFC5305, October
+              2008, <https://www.rfc-editor.org/info/rfc5305>.
+
+
+
+
+
+
+Yan, et al.                Expires May 3, 2018                 [Page 15]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
+   [RFC5308]  Hopps, C., "Routing IPv6 with IS-IS", RFC 5308,
+              DOI 10.17487/RFC5308, October 2008,
+              <https://www.rfc-editor.org/info/rfc5308>.
+
+9.2.  Informative References
 
    [PMJ1]     , <https://www.ncbi.nlm.nih.gov/genome/>.
 
@@ -828,6 +876,13 @@ Internet-Draft               Network slicing               November 2017
 
 Authors' Addresses
 
+   Shen Yan (editor)
+   Huawei Technologies
+   Q10, Huawei Campus, No.156 Beiqing Road
+   Hai-Dian District, Beijing, 100095
+   P.R. China
+
+   Email: leo.liubing@huawei.com
 
 
 
@@ -837,33 +892,26 @@ Authors' Addresses
 
 
 
-Yan, et al.                Expires May 5, 2018                 [Page 15]
+
+Yan, et al.                Expires May 3, 2018                 [Page 16]
 
-Internet-Draft               Network slicing               November 2017
-
-
-   Shen Yan
-   Huawei
-   Beiqing
-   Beijing, Haidian  100095
-   China
-
-   Email: yanshen@huawei.com
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
 
    Pedro Martinez-Julia
-   NICT/Japan
+   Cisco Systems
+   821 Alder Drive
+   Milpitas  CA 95035
+   USA
 
-   Email: pedro@nict.go.jp
+   Email: ginsberg@cisco.com
 
 
    Albert Cabellos-Aparicio
-   Technical University of Catalonia
+   Orange
+   France
 
-   Email: albert.cabellos@gmail.com
-
-
-
+   Email: bruno.decraene@orange.com
 
 
 
@@ -893,4 +941,12 @@ Internet-Draft               Network slicing               November 2017
 
 
 
-Yan, et al.                Expires May 5, 2018                 [Page 16]
+
+
+
+
+
+
+
+
+Yan, et al.                Expires May 3, 2018                 [Page 17]
