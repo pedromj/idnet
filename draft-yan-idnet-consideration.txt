@@ -12,6 +12,7 @@
 [Author List]
 Shen Yan, Huawei Technologies
 Pedro Martinez-Julia, NICT/Japan
+Albert Cabellos-Aparicio, UPC
 TBD, TBD
 
 
@@ -24,8 +25,19 @@ draft-idnet-00
 This document aims to pinpoint the work scope of Intelligence Driven Network (IDN) and mine the potential standardization work. Firstly, the problems and new requirements for the existing methods are analyzed. Numbers of high value use-cases are proposed as examples to instantiate them. A benchmark framework design is proposed, which is important during the machine learning and inference process. Finally, a reference model of IDN is proposed, based on which the potential standardization work is analyzed. 
 
 			 
-1.	Problem Statement and General Requirements
-An analysis of the problems, requirements and benefits of introducing AI into network operation and management. The requirements in the current network that may be solved perfectly by AI methods. 
+1.	Introduction
+
+Recently, AI technologies has maken an great achievement in many area and become more and more popular. The combination of AI and network is also expected. However, the detail works, especially the potential standard points are still not clear. 
+
+In this document, we want to summerize the valuable content in the idnet maillist and make clear about the following. 
+
+  * What are the requirements? In network area, what problems need AI to solve? It always makes misunderstanding that AI is almighty. But it is objective that AI has both advantages and disadvantages. The work scope and scenarios, which AI may be helpful and perform well, will be discussed and analyzed. 
+  
+  * What are the gap when combining AI and network? The modern AI algorithms are proposed by image processing area but not network. Most of the algorithms cannot be migrated and used directly. Take the data format as an example. The input and output of the AI algorithm may be just numerical matrix or vector. The network data are not quite formatted and regular. They need to be tranlated or converted before and after the algorithm. The gaps, like data format, data orchestration and etc., will be analyzed.  
+  
+  * What are the potential and new standard points? The intruduction of AI will bring new requirements for the current network. For example, the AI engine may need high frequency and high accuracy data to feed. Moreover, these data needs to be captured and transmitted in real-time and continuously. What improvements should be accomplished for the existing protocols? Whether there is new protocol requirement? What communication processes are universal and what kinds of data format that can be used in most of the scenarios? 
+
+This document aims to become the blueprint for the future works. The structure is organized as following. Section 2 describes the work scope of idnet and summerize the use cases. Section 3 shows the analysis of measurement and data format. Section 4 discusses about the benchmark of data. Section 5 abstracts the IDN architecture and give a brief analysis of potential standard points. Section 6 points out the new security challenge which AI brings to the network. Section 7 to 9 are IANA, Acknowledgements and References. 
 
 
 2.	Scope and use cases
@@ -89,7 +101,6 @@ Message : 		Request: ask for the data
 				Reply: Data
 				Notice: For notification or others 
 				Policy: Control policy
-
 				
 				
 2.2.3 Deep Reinforcement-Learning Control of the Network
@@ -168,29 +179,36 @@ Networks can measure low-level metrics, such as delay, jitter and losses. Howeve
 							   
 For this a well-established technique (e.g, see [REF5] and the references therein) is to follow the architecture depicted in the following figure. First the network low-level metrics are measured using telemetry, this information is stored in the Network Analytics platform. In addition to this users and or applications are polled to obtain QoE metrics of the network. The data-set containing both the low-level metrics and the QoE metrics is considered the ground truth.
 
-By means of supervised learning (e..g, deep neural networks)  we aim to learn the relation between the low-level and the QoE metrics. As an example we aim to learn the relation between the amounts of losses in different wireless links, the SNR and the utilization with the perceived MoS. Typically it has been shown that such relationship is non-lineal and multi-dimensional and as such, can be understood by a neural network. This relationship is the knowledge that we extract from the ground truth and it is used by the Network Management (NM) module. By means of this knowledge, the NM can understand how to operate the network based on low-level metrics (e.g., keep losses below a certain threshold) to fulfill QoE requirements. 
-
-
-
+By means of supervised learning (e.g., deep neural networks)  we aim to learn the relation between the low-level and the QoE metrics. As an example we aim to learn the relation between the amounts of losses in different wireless links, the SNR and the utilization with the perceived MoS. Typically it has been shown that such relationship is non-lineal and multi-dimensional and as such, can be understood by a neural network. This relationship is the knowledge that we extract from the ground truth and it is used by the Network Management (NM) module. By means of this knowledge, the NM can understand how to operate the network based on low-level metrics (e.g., keep losses below a certain threshold) to fulfill QoE requirements. 
 
 
 3.	Measurement and Data Format
 
 
 3.1.	Measurement Tools and Methods
-The new requirements of the measurement, such as high frequency, high precision, new KPIs and so on. The analysis for the current measuring methods and try to distinguish the potential usable tools and methods. 
 
+The modern AI algorithms are mostly based on data-driven, which means that the AI engine needs quite plenty of data to feed and upgrade. In other words, higher frequency and accuracy data is required. The high scalability requirement needs distributed measurement tools to provide such abilities. The traditional methods and improvements can hardly support. 
+
+Firstly, the current measurement methods mostly orient to the service. For example, the voice service requires the end to end delay and jitter in a low level. Besides that, the AI engine may need more data from both network and other sources. For example, the QoE and identity information may influence the AI engine to make different decisions. The current measurement tools and data model cannot support this ability. Thus, the potential usable tools and methods, such as high frequency, high precision, new KPIs and so on, may need to develop. 
+
+Secondly, the current measurement methods mostly cannot support high frequency measurement. Even though it can, the data feedback scheme is commonly closed. The word "closed" means that the measured data is commonly sent to the device which launches the measure action rather than the data demander (AI Engine). The future measurement tools require more programmability, especially in the data feedback scheme. 
+
+TBD.
 
 3.2.	Data Format Analysis
-Including the aggregation of labelling and other stuff. The requirements of the network AI algorithm for the input/output. The expression of labels, meta-data, policies, and so on. 
 
+There is huge gap between the current network data and algorithm data. The network data, such as IP address, delay, link utilization and etc., is mostly semantic. It means that each data actually describe a specific physical or logical entity. For example, one IP address means a certain location or a certain host in the network. However, the input and output data of an algorithm is usually non-semantic, which means it is not responding to a specific concept/action/device that can be found in the network. This depends on the fundamental design of AI algorithm and is hardly changed in the short term. 
+
+Another issue is that the AI engine potentially needs to obtain data from external sources. For the data that can be provided one-off, it is easily solved according to the application. For the data that needs to be provided continuously (e.g. the real-time external data), it is required to define the data format that satisfy the algorithm. Similarly, the output of algorithm may need to be translated into specific format that the next step devices can run and execute. Otherwise, it is hard to build up the full autonomic close loop of the network management. In other words, the data aggregation process is important and it is valuable to build the bridge between the network data and algorithm data. 
+
+TBD.
 
 4.	Benchmarking Framework
-A standard benchmarking framework is required to assess the quality of an AI mechanism when it is used to resolve a specific problem in the network maangement and control area. It comprises a reference set of procedures, methods, models, and boundary values that *must* be enforced to the benchmarked mechanism, so that its operation can be comparable to other mechanisms and users can easily understand what to expect from each one.
+A standard benchmarking framework is required to assess the quality of an AI mechanism when it is used to resolve a specific problem in the network management and control area. It comprises a reference set of procedures, methods, models, and boundary values that *must* be enforced to the benchmarked mechanism, so that its operation can be comparable to other mechanisms and users can easily understand what to expect from each one.
 
 Moreover, both the metrics included as a reference within the benchmarking framework and the results obtained from its application to a new mechanism must follow a standard format. Therefore, the standard formats must be enforced to all data, either being introduced to the benchmarking application or system (consumed), or obtained from its application (produced).
 
-A common and decentralized "data market" can (and would) arise from the inclusion, dependency, and the general relation of all data, considering it is represented using the same concepts (ontology) and the standard format mentioned here. As a reference, it is worth to mention that a similar appraoch has been alreday applied to genome and protein data to build standardized and easily transferable data banks [PMJ1][PMJ2] [PMJ3], and they have demonstrated to be key enablers in their respective work areas.
+A common and decentralized "data market" can (and would) arise from the inclusion, dependency, and the general relation of all data, considering it is represented using the same concepts (ontology) and the standard format mentioned here. As a reference, it is worth to mention that a similar approach has been already applied to genome and protein data to build standardized and easily transferable data banks [PMJ1][PMJ2] [PMJ3], and they have demonstrated to be key enablers in their respective work areas.
 
 The initial scope of input/output data would be the datasets, but also the new knowledge items that are stated as a result of applying the benchmarking procedures defined by the framework, which can be collected together to build a database of benchmark results, or just contrasted with other existing entries in the database to know the position of the solution just evaluated. This increases the usefulness of IDNET.
 
@@ -239,12 +257,12 @@ The under layer is Infrastructure layer, which contains network function, measur
     Type	                              Content
 -----------------------------------------------------------------
   Network Data	        Delay, Jitter, Packet Lose Rate,
-                        Link Utilization, ¡­
+                        Link Utilization, ...
   Device Data	        Device Configuration, VPN Configuration, 
-                        Slicing Configuration, ¡­
-  User Data	            QoE Feedback, User Information, ¡­
+                        Slicing Configuration, ...
+  User Data	            QoE Feedback, User Information, ...
   
-  Data Packet	        Packet Sample, Packet Character, ¡­
+  Data Packet	        Packet Sample, Packet Character, ...
   
   Other Type	        TBD
 -----------------------------------------------------------------
@@ -291,7 +309,3 @@ References
 [REF3] Ian F Akyildiz, Ahyoung Lee, Pu Wang, Min Luo, and Wu Chou. A roadmap for traffic engineering in SDN-OpenFlow networks. Computer Networks, 71(C):130, October 2014. 
 [REF4] Justin A Boyan and Michael L Littman. Packet routing in dynamically changing networks: A reinforcement learning approach. In Advances in neural information processing systems, pages 671678, 1994
 [REF5] Orsolic I, Pevec D, Suznjevic M, Skorin-Kapov L. A machine learning approach to classifying YouTube QoE based on encrypted network traffic. Multimedia Tools and Applications. 2017 Jan 1:1-35.
-
-
-			 
-			 
