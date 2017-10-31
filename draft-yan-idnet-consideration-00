@@ -1,13 +1,13 @@
-  
 
 
 
-none                                                         S. Yan, Ed.
-Internet-Draft                                       Huawei Technologies
+
+none                                                              S. Yan
+Internet-Draft                                                    Huawei
 Intended status: Informational                         P. Martinez-Julia
-Expires: May 3, 2018                                       Cisco Systems
+Expires: May 3, 2018                                          NICT/Japan
                                                     A. Cabellos-Aparicio
-                                                                  Orange
+                                       Technical University of Catalonia
                                                         October 30, 2017
 
 
@@ -77,32 +77,32 @@ Copyright Notice
 
 Table of Contents
 
-   1.  Problem Statement and General Requirements  . . . . . . . . .   3
-   2.  Scope and use cases . . . . . . . . . . . . . . . . . . . . .   3
-     2.1.  Scope . . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.2.  High Value Use Cases  . . . . . . . . . . . . . . . . . .   3
-       2.2.1.  Traffic Prediction  . . . . . . . . . . . . . . . . .   3
-       2.2.2.  QoS management  . . . . . . . . . . . . . . . . . . .   4
-       2.2.3.  Deep Reinforcement-Learning Control of the Network  .   5
-       2.2.4.  QoE Management via Supervised Learning  . . . . . . .   8
-       2.2.5.  TBD . . . . . . . . . . . . . . . . . . . . . . . . .   9
-   3.  Measurement and Data Format . . . . . . . . . . . . . . . . .   9
-     3.1.  Measurement Tools and Methods . . . . . . . . . . . . . .   9
-     3.2.  Data Format Analysis  . . . . . . . . . . . . . . . . . .   9
-   4.  Benchmarking Framework  . . . . . . . . . . . . . . . . . . .   9
-   5.  References Model and Potential Standardization Points . . . .  10
-     5.1.  References Model  . . . . . . . . . . . . . . . . . . . .  10
-     5.2.  Measurement . . . . . . . . . . . . . . . . . . . . . . .  13
-     5.3.  Data representation, transport and aggregation  . . . . .  14
-     5.4.  Legacy Device Route control . . . . . . . . . . . . . . .  14
-     5.5.  TBD . . . . . . . . . . . . . . . . . . . . . . . . . . .  14
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
-   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
-   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  15
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  15
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  15
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  16
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  16
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
+   2.  Scope and use cases . . . . . . . . . . . . . . . . . . . . .   4
+     2.1.  Scope . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.2.  High Value Use Cases  . . . . . . . . . . . . . . . . . .   4
+       2.2.1.  Traffic Prediction  . . . . . . . . . . . . . . . . .   4
+       2.2.2.  QoS management  . . . . . . . . . . . . . . . . . . .   5
+       2.2.3.  Deep Reinforcement-Learning Control of the Network  .   6
+       2.2.4.  QoE Management via Supervised Learning  . . . . . . .   9
+       2.2.5.  TBD . . . . . . . . . . . . . . . . . . . . . . . . .  10
+   3.  Measurement and Data Format . . . . . . . . . . . . . . . . .  10
+     3.1.  Measurement Tools and Methods . . . . . . . . . . . . . .  10
+     3.2.  Data Format Analysis  . . . . . . . . . . . . . . . . . .  10
+   4.  Benchmarking Framework  . . . . . . . . . . . . . . . . . . .  11
+   5.  References Model and Potential Standardization Points . . . .  12
+     5.1.  References Model  . . . . . . . . . . . . . . . . . . . .  12
+     5.2.  Measurement . . . . . . . . . . . . . . . . . . . . . . .  15
+     5.3.  Data representation, transport and aggregation  . . . . .  15
+     5.4.  Legacy Device Route control . . . . . . . . . . . . . . .  16
+     5.5.  TBD . . . . . . . . . . . . . . . . . . . . . . . . . . .  16
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  16
+   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  16
+   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  16
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  16
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  16
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  17
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  18
 
 
 
@@ -114,13 +114,64 @@ Yan, et al.                Expires May 3, 2018                  [Page 2]
 Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
 
-1.  Problem Statement and General Requirements
+1.  Introduction
 
-   Recently,
+   Recently, AI technology has made a great achievement and become more
+   and more popular.  The combination of AI and network is also a hot
+   topic.  The concept of Intelligence Driven Network (IDN) has been
+   proposed.  This concept is intended to describe the schemes that
+   introducing AI into network and provide new solutions for the current
+   and future network problems.  There has been quite a lot of
+   discussions about the AI application in the network in both academic
+   and industrial area.  However, the detail works, especially the
+   potential standard points are still not clear.
 
-   An analysis of the problems, requirements and benefits of introducing
-   AI into network operation and management.  The requirements in the
-   current network that may be solved perfectly by AI methods.
+   In this document, we want to summerize the valuable content in the
+   idnet maillist and make clear about the following.
+
+   o  What are the requirements?  In network area, what problems need AI
+      to solve?  It always makes misunderstanding that AI is almighty.
+      But it is factual that AI has both advantages and disadvantages.
+      The work scope and scenarios, which AI may be useful and perform
+      well, will be discussed and analyzed.
+
+   o  What are the gap when combining AI and network?  The modern AI
+      algorithms are proposed by image processing area but not network.
+      Most of the algorithms cannot be migrated and used directly.  Take
+      the data format as an example.  The input and output of the AI
+      algorithm may be just numerical matrix or vector.  The network
+      data are not entirely formatted and regular.  They need to be
+      translated or converted before and after the algorithm.  The gaps,
+      like the data format, data orchestration and etc., will be
+      analyzed.
+
+   o  What are the potential and new standard points?  The intruduction
+      of AI will bring new requirements for the current network.  For
+      example, the AI engine may need high frequency and high accuracy
+      data to feed.  Moreover, these data needs to be captured and
+      transmitted in real-time and continuously.  What improvements
+      should be accomplished for the existing protocols?  Whether there
+      are new protocol requirements?  What communication processes are
+      universal and what kinds of data format that can be utilized in
+      most of the scenarios?
+
+   This document aims to become the blueprint for the future work.  The
+   structure is organized as following.  Section 2 describes the work
+   scope of idnet and summerize the use cases.  Section 3 indicates the
+   analysis of measurement and data format.  Section 4 discusses about
+   the benchmark of data.  Section 5 abstracts the IDN architecture and
+   gives a brief analysis of potential standard points.  Section 6
+
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 3]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
+   points out the new security challenge which AI brings to the network.
+   Section 7 to 9 are IANA, Acknowledgements and References.
 
    TBD
 
@@ -131,19 +182,14 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
 2.1.  Scope
 
    A general description about what should be focused during the IETF
-   work and what should not.  Clarify the work boundary. (e.g. in my
-   personal opinion, the pure algorithm research will not be suitable
-   for our IETF works since it is not relative with protocols and
-   communications.  Also, the architecture work will be not suitable.
-   But we need one, such as the one discussed at IETF-99, for
-   reference.)
+   work and what should not.  Clarify the work boundary.  TBD
 
 2.2.  High Value Use Cases
 
-   The descriptions for various use cases, which we have some
-   aggregation in the mail list.  Describe the scenarios that may be
-   useful and valuable.  A details analysis may be helpful for the data
-   and protocol design.
+   There are numbers of use cases, which have been discussed in the
+   idnet mail list.  Describe the scenarios that may be useful and
+   valuable.  A details analysis may be helpful for the data and
+   protocol design.
 
 2.2.1.  Traffic Prediction
 
@@ -163,13 +209,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
       Position: [Device ID, Port ID]
 
-
-
-Yan, et al.                Expires May 3, 2018                  [Page 3]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
-
       Direction: IN / OUT
 
       Route : [R1, R2, ..., RN] (might be useful for some scenarios)
@@ -178,6 +217,14 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
       seems useful)
 
       Traffic: [T0, T1, T2, ..., TN]
+
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 4]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
 
       Message :
 
@@ -217,15 +264,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    modify the VPN_S_D route from S-A-B-C-D to S-I-J-K-D.  The other one
    is restricting non-object's transmission so that to protect the
    object's QoS.  For example, we increase the reserved bandwidth of
-
-
-
-
-Yan, et al.                Expires May 3, 2018                  [Page 4]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
-
    VPN_S_D or modify the route of non-object flows from S-A-B-C-D to
    S-I-J-K-D therefore most of the traffic will not affect VPN_S_D.
 
@@ -236,6 +274,14 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    response?  Challenge 2 is whether there is existing protocols which
    can support high frequency measurement?  Because AI system needs to
    be fed with continuous link status data.  And the real-time data need
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 5]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
    to be captured frequently otherwise the route change will be
    worthless.  I think the protocols that support high frequency
    measurement and data collection may become one of our focus point.
@@ -274,14 +320,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    control the routing of the network and achieve the target policy set
    by the administrators (e.g., [REF2, REF3, REF4]).
 
-
-
-
-Yan, et al.                Expires May 3, 2018                  [Page 5]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
-
    The following figure describes a common architecture of a DRL
    operating a network.  The agent acts upon the network (action) by
    changing the configuration, this results in the network changing its
@@ -290,6 +328,15 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    the operator and represents the target performance (e.g., load-
    balance the traffic in the network).  The agent will learn how to act
    upon the network to maximize the expected reward function.
+
+
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 6]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
 
                              +---------------+
           +------------------>               |
@@ -329,15 +376,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
        prior assumption about the system.  However heuristics, very
        commonly used in optimization strategies, are tailored for the
        problem they are trying to optimize.  However, an operator only
-
-
-
-
-Yan, et al.                Expires May 3, 2018                  [Page 6]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
-
        needs to change the reward function to implement a different
        target network policy.
 
@@ -348,6 +386,14 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
    Process: 1.- Act upon the network by changing the routing
    configuration, for instance using a standard mechanism. 2.- Receive
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 7]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
    the state of the network, this is the per-link delay and the current
    traffic load. 3.- Compute the reward function as a function of the
    state. 4.- Deep Reinforcement Learning training. 5.- Go back to step
@@ -385,15 +431,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    the agent itself, the reward function and the state.  This requires
    the following standardization efforts:
 
-
-
-
-
-Yan, et al.                Expires May 3, 2018                  [Page 7]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
-
    1.  The reward function and its translation from the human-readable
        target network policy.  The operators may want to use different
        vendor DRL agents that need to understand the reward function.
@@ -405,6 +442,13 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
        is an input of the agent and is used in the reward function,
        there is a need for standard representation so that the different
        pieces can interoperate.
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 8]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
 
 2.2.4.  QoE Management via Supervised Learning
 
@@ -442,14 +486,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
    For this a well-established technique (e.g., see [REF5] and the
    references therein) is to follow the architecture depicted in the
-
-
-
-Yan, et al.                Expires May 3, 2018                  [Page 8]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
-
    following figure.  First the network low-level metrics are measured
    using telemetry, this information is stored in the Network Analytics
    platform.  In addition to this users and or applications are polled
@@ -462,6 +498,14 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    an example we aim to learn the relation between the amounts of losses
    in different wireless links, the SNR and the utilization with the
    perceived MoS.  Typically it has been shown that such relationship is
+
+
+
+Yan, et al.                Expires May 3, 2018                  [Page 9]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
    non-lineal and multi-dimensional and as such, can be understood by a
    neural network.  This relationship is the knowledge that we extract
    from the ground truth and it is used by the Network Management (NM)
@@ -477,16 +521,67 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
 3.1.  Measurement Tools and Methods
 
-   The new requirements of the measurement, such as high frequency, high
-   precision, new KPIs and so on.  The analysis for the current
-   measuring methods and try to distinguish the potential usable tools
-   and methods.
+   The modern AI algorithms are mostly based on data-driven, which means
+   that the AI engine needs quite plenty of data to feed and upgrade.
+   In other words, higher frequency and accuracy data is required.  The
+   high scalability requirement needs distributed measurement tools to
+   provide such abilities.  The traditional methods and improvements may
+   hardly support.
+
+   Firstly, the current measurement methods mostly orient to the
+   service.  For example, the voice service requires the end to end
+   delay and jitter in a low level.  Besides that, the AI engine may
+   need more data from both network and other sources.  For example, the
+   QoE and identity information may influence the AI engine to make
+   different decisions.  The current measurement tools and data model
+   cannot support this ability.  Thus, the potential usable tools and
+   methods, such as high frequency, high precision, new KPIs and so on,
+   may need to develop.
+
+   Secondly, the current measurement methods mostly cannot support high
+   frequency measurement.  Even though it can, the data feedback scheme
+   is commonly closed.  The word "closed" means that the measured data
+   is commonly sent to the device which launches the measure action
+   rather than the data demander (AI Engine).  The future measurement
+   tools require more programmability, especially in the data feedback
+   scheme.
+
+   TBD.
 
 3.2.  Data Format Analysis
 
-   Including the aggregation of labelling and other stuff.  The
-   requirements of the network AI algorithm for the input/output.  The
-   expression of labels, meta-data, policies, and so on.
+   There is huge gap between the current network data and algorithm
+   data.  The network data, such as IP address, delay, link utilization
+   and etc., is mostly semantic.  It means that each data actually
+   describe a specific physical or logical entity.  For example, one IP
+
+
+
+Yan, et al.                Expires May 3, 2018                 [Page 10]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
+   address means a certain location or a certain host in the network.
+   However, the input and output data of an algorithm is usually non-
+   semantic, which means it is not responding to a specific
+   concept/action/device that can be found in the network.  This depends
+   on the fundamental design of AI algorithm and is hardly changed in
+   the short term.
+
+   Another issue is that the AI engine potentially needs to obtain data
+   from external sources.  For the data that can be provided one-off, it
+   is easily solved according to the application.  For the data that
+   needs to be provided continuously (e.g. the real-time external data),
+   it is required to define the data format that satisfy the algorithm.
+   Similarly, the output of algorithm may need to be translated into
+   specific format that the next step devices can run and execute.
+   Otherwise, it is hard to build up the full autonomic close loop of
+   the network management.  In other words, the data aggregation process
+   is important and it is valuable to build the bridge between the
+   network data and algorithm data.
+
+   TBD.
 
 4.  Benchmarking Framework
 
@@ -497,14 +592,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    be enforced to the benchmarked mechanism, so that its operation can
    be comparable to other mechanisms and users can easily understand
    what to expect from each one.
-
-
-
-
-Yan, et al.                Expires May 3, 2018                  [Page 9]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
 
    Moreover, both the metrics included as a reference within the
    benchmarking framework and the results obtained from its application
@@ -522,6 +609,15 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    banks [PMJ1][PMJ2] [PMJ3], and they have demonstrated to be key
    enablers in their respective work areas.
 
+
+
+
+
+Yan, et al.                Expires May 3, 2018                 [Page 11]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
    The initial scope of input/output data would be the datasets, but
    also the new knowledge items that are stated as a result of applying
    the benchmarking procedures defined by the framework, which can be
@@ -532,35 +628,11 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
 5.  References Model and Potential Standardization Points
 
-   TBD
-
 5.1.  References Model
 
    A three layers reference model of IDN has been proposed as follow.
    This architecture can cover, explain and support most of the current
    use cases and scenarios.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Yan, et al.                Expires May 3, 2018                 [Page 10]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
 
             +-----------+                          +----------+
             |Open       |------------------------->|          |
@@ -593,6 +665,15 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
     tructure|Device       |--->|Function   |<-----| Function   |
     Layer   +-------------+    +-----------+      +------------+
 
+
+
+
+
+Yan, et al.                Expires May 3, 2018                 [Page 12]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
    The under layer is Infrastructure layer, which contains network
    function, measurement function and terminal/user device.  The network
    function stands for the traditional routers, switches and other
@@ -609,15 +690,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    produced by terminal/user devices is measurable.  This type of data
    will be captured by the measurement function.  Other types of data
    that cannot be measured directly by network measurement functions is
-
-
-
-
-Yan, et al.                Expires May 3, 2018                 [Page 11]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
-
    represented as 3rd party datasets, which hopefully can be utilized in
    the future via 3rd party integration at the intelligence layer.
 
@@ -650,6 +722,14 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    future when training becomes something easier defined into the
    control layer.
 
+
+
+
+Yan, et al.                Expires May 3, 2018                 [Page 13]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
    The aggregated dataset function owns the ability to gather and tidy
    the data.  The database or database cluster is the typical example.
    Some of the control devices, such as SDN controller, integrate this
@@ -666,13 +746,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    decision making in the network - which is why we device in the
    architecture the ability to communicate it between 3rd parties and
    the network.
-
-
-
-Yan, et al.                Expires May 3, 2018                 [Page 12]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
 
    The high layer, which is also the main body of IDN, is the
    Intelligence Layer.  This layer is commonly deployed in the
@@ -705,6 +778,14 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    is what often gets standardized.  Therefore, some of the potential
    standardization points will be mentioned in the following.
 
+
+
+
+Yan, et al.                Expires May 3, 2018                 [Page 14]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
 5.2.  Measurement
 
    In IDN, the intelligent system (or database) needs frequent and
@@ -722,13 +803,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    may need more kinds of data type to measure.  Not only the delay,
    jitter and packet loss rate, but also the link utilization and other
    necessary parameters.
-
-
-
-Yan, et al.                Expires May 3, 2018                 [Page 13]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
 
 5.3.  Data representation, transport and aggregation
 
@@ -760,6 +834,14 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    deploying efficiency and simplify the communication between
    controllers on the East-West direction.
 
+
+
+
+Yan, et al.                Expires May 3, 2018                 [Page 15]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
 5.4.  Legacy Device Route control
 
    Similar with IPv4/IPv6 transition, the IDN potentially faces to the
@@ -778,14 +860,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    intelligent analytics or automated intelligent decision making, care
    must be taken to understand the new security challenges.  When for
    example more intelligent decisions are enabled through the collection
-
-
-
-Yan, et al.                Expires May 3, 2018                 [Page 14]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
-
    of ever more data, it needs to be analyzed how that potentially
    enables attackers to easier feed data that derails the intelligent
    system ability to distinguish good from bad behavior.
@@ -815,6 +889,15 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
               dual environments", RFC 1195, DOI 10.17487/RFC1195,
               December 1990, <https://www.rfc-editor.org/info/rfc1195>.
 
+
+
+
+
+Yan, et al.                Expires May 3, 2018                 [Page 16]
+
+Internet-Draft       draft-yan-idn-consideration-00         October 2017
+
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -831,16 +914,6 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
    [RFC5305]  Li, T. and H. Smit, "IS-IS Extensions for Traffic
               Engineering", RFC 5305, DOI 10.17487/RFC5305, October
               2008, <https://www.rfc-editor.org/info/rfc5305>.
-
-
-
-
-
-
-Yan, et al.                Expires May 3, 2018                 [Page 15]
-
-Internet-Draft       draft-yan-idn-consideration-00         October 2017
-
 
    [RFC5308]  Hopps, C., "Routing IPv6 with IS-IS", RFC 5308,
               DOI 10.17487/RFC5308, October 2008,
@@ -874,45 +947,34 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
               based on encrypted network traffic. Multimedia Tools and
               Applications", January 2017.
 
-Authors' Addresses
-
-   Shen Yan (editor)
-   Huawei Technologies
-   Q10, Huawei Campus, No.156 Beiqing Road
-   Hai-Dian District, Beijing, 100095
-   P.R. China
-
-   Email: leo.liubing@huawei.com
 
 
-
-
-
-
-
-
-
-
-Yan, et al.                Expires May 3, 2018                 [Page 16]
+Yan, et al.                Expires May 3, 2018                 [Page 17]
 
 Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
 
-   Pedro Martinez-Julia
-   Cisco Systems
-   821 Alder Drive
-   Milpitas  CA 95035
-   USA
+Authors' Addresses
 
-   Email: ginsberg@cisco.com
+   Shen Yan
+   Huawei
+   Beiqing
+   Beijing, Haidian  100095
+   China
+
+   Email: yanshen@huawei.com
+
+
+   Pedro Martinez-Julia
+   NICT/Japan
+
+   Email: pedro@nict.go.jp
 
 
    Albert Cabellos-Aparicio
-   Orange
-   France
+   Technical University of Catalonia
 
-   Email: bruno.decraene@orange.com
-
+   Email: albert.cabellos@gmail.com
 
 
 
@@ -943,10 +1005,4 @@ Internet-Draft       draft-yan-idn-consideration-00         October 2017
 
 
 
-
-
-
-
-
-
-Yan, et al.                Expires May 3, 2018                 [Page 17]
+Yan, et al.                Expires May 3, 2018                 [Page 18]
